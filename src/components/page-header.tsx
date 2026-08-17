@@ -10,10 +10,10 @@ export function PageHeader({
   action,
 }: {
   title: string;
-  subtitle?: string;
-  backTo?: string;
-  backParams?: Record<string, string>;
-  action?: ReactNode;
+  subtitle?: string | undefined;
+  backTo?: string | undefined;
+  backParams?: Record<string, string> | undefined;
+  action?: ReactNode | undefined;
 }) {
   return (
     <header className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
