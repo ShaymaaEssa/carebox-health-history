@@ -70,7 +70,10 @@ export async function uploadAttachment(params: {
   if (invalid) return { error: invalid };
 
   const prepared = await prepareFile(file);
-  if (prepared.error) return { error: prepared.error };
+  if (prepared.error !== undefined || prepared.blob === undefined) {
+    return { error: prepared.error ?? "We couldn't prepare this file. Please try again." };
+  }
+  const body = prepared.blob;
 
   const ext = EXT_BY_MIME[file.type];
   const fileName = `${crypto.randomUUID()}.${ext}`;
@@ -78,7 +81,7 @@ export async function uploadAttachment(params: {
 
   const { error: uploadError } = await supabase.storage
     .from(ATTACHMENTS_BUCKET)
-    .upload(storagePath, prepared.blob, { contentType: file.type, upsert: false });
+    .upload(storagePath, body, { contentType: file.type, upsert: false });
 
   if (uploadError) {
     return { error: `Upload failed for "${file.name}". Please try again.` };
@@ -90,7 +93,7 @@ export async function uploadAttachment(params: {
     p_original_file_name: file.name,
     p_file_name: fileName,
     p_mime_type: file.type,
-    p_file_size: prepared.blob.size,
+    p_file_size: body.size,
     p_original_file_size: file.size,
   });
 
