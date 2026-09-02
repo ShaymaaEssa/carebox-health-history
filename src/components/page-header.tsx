@@ -16,7 +16,7 @@ export function PageHeader({
   action?: ReactNode | undefined;
 }) {
   return (
-    <header className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+    <header className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 sm:mb-8 sm:gap-4">
       <div className="min-w-0">
         {backTo && (
           <Link
@@ -24,13 +24,13 @@ export function PageHeader({
             to={backTo as any}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             params={backParams as any}
-            className="mb-2 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+            className="-ml-2 mb-2 inline-flex min-h-9 items-center gap-1 rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
           >
             <ChevronLeft className="h-4 w-4" /> Back
           </Link>
         )}
-        <h1 className="truncate text-2xl font-semibold tracking-tight text-foreground">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+        <h1 className="text-page-title truncate text-foreground">{title}</h1>
+        {subtitle && <p className="text-meta mt-1.5">{subtitle}</p>}
       </div>
       {action}
     </header>
