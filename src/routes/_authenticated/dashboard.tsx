@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Plus, Users } from "lucide-react";
+import { FileHeart, Plus, Users } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { EmptyState } from "@/components/empty-state";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { dashboardQuery, familyMembersQuery } from "@/lib/queries";
 
@@ -43,96 +44,117 @@ function Dashboard() {
   const countById = new Map(
     (summary.data?.per_family_member ?? []).map((p) => [p.family_member_id, p.prescription_count]),
   );
+  const memberList = members.data ?? [];
+  const recent = summary.data?.recent_prescriptions ?? [];
 
   return (
-    <div className="space-y-8">
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">CareBox</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Prescription records for the people you care for.</p>
+    <div className="space-y-10">
+      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+        <div className="min-w-0">
+          <p className="text-eyebrow">Your household</p>
+          <h1 className="text-page-title mt-1 text-foreground">CareBox</h1>
+          <p className="text-meta mt-1.5">Prescription records for the people you care for.</p>
+        </div>
+        <Button asChild className="hidden h-11 shrink-0 sm:inline-flex">
+          <Link to="/family/new">
+            <Plus className="mr-1 h-4 w-4" /> Add member
+          </Link>
+        </Button>
       </header>
 
-      <div className="grid grid-cols-2 gap-3">
-        <Card>
-          <CardContent className="p-4">
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">Family members</p>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        {[
+          { label: "Family members", value: summary.data?.total_family_members ?? 0 },
+          { label: "Prescriptions", value: summary.data?.total_prescriptions ?? 0 },
+        ].map((stat) => (
+          <div key={stat.label} className="surface-card p-4 sm:p-5">
+            <p className="text-eyebrow">{stat.label}</p>
             {summary.isLoading ? (
-              <Skeleton className="mt-2 h-7 w-10" />
+              <Skeleton className="mt-2 h-8 w-12" />
             ) : (
-              <p className="mt-1 text-2xl font-semibold">{summary.data?.total_family_members ?? 0}</p>
+              <p className="font-display mt-1.5 text-3xl font-semibold text-foreground sm:text-4xl">
+                {stat.value}
+              </p>
             )}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">Prescriptions</p>
-            {summary.isLoading ? (
-              <Skeleton className="mt-2 h-7 w-10" />
-            ) : (
-              <p className="mt-1 text-2xl font-semibold">{summary.data?.total_prescriptions ?? 0}</p>
-            )}
-          </CardContent>
-        </Card>
+          </div>
+        ))}
       </div>
 
-      <section className="space-y-3">
-        <h2 className="text-sm font-medium text-foreground">Family</h2>
-        <div className="grid grid-cols-2 gap-3">
-          {members.isLoading &&
-            [0, 1].map((i) => <Skeleton key={i} className="h-28 rounded-xl" />)}
-          {(members.data ?? []).map((member) => (
+      <section className="space-y-4">
+        <h2 className="text-section-title text-foreground">Family</h2>
+
+        {members.isLoading ? (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {[0, 1, 2].map((i) => (
+              <Skeleton key={i} className="h-32 rounded-xl" />
+            ))}
+          </div>
+        ) : memberList.length === 0 ? (
+          <EmptyState
+            icon={Users}
+            title="No family members yet"
+            description="Add the first person you look after, then start saving their prescriptions."
+            action={
+              <Button asChild className="h-11">
+                <Link to="/family/new">
+                  <Plus className="mr-1 h-4 w-4" /> Add family member
+                </Link>
+              </Button>
+            }
+          />
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {memberList.map((member) => (
+              <Link
+                key={member.id}
+                to="/family/$memberId"
+                params={{ memberId: member.id }}
+                className="card-interactive animate-fade-in block p-4 sm:p-5"
+              >
+                <div className="grid h-11 w-11 place-items-center rounded-full bg-secondary text-sm font-semibold text-primary">
+                  {initials(member.name) || <Users className="h-4 w-4" />}
+                </div>
+                <p className="text-card-title mt-3 truncate text-foreground">{member.name}</p>
+                <p className="text-meta">{member.relationship ?? "Family"}</p>
+                <p className="text-meta mt-1">{countById.get(member.id) ?? 0} prescriptions</p>
+              </Link>
+            ))}
             <Link
-              key={member.id}
-              to="/family/$memberId"
-              params={{ memberId: member.id }}
-              className="rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary"
+              to="/family/new"
+              className="flex min-h-32 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border p-4 text-sm font-medium text-muted-foreground transition-colors hover:border-primary hover:bg-secondary/50 hover:text-primary"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-                {initials(member.name) || <Users className="h-4 w-4" />}
-              </div>
-              <p className="mt-3 truncate font-medium text-foreground">{member.name}</p>
-              <p className="text-xs text-muted-foreground">{member.relationship ?? "Family"}</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {countById.get(member.id) ?? 0} prescriptions
-              </p>
+              <Plus className="h-5 w-5" />
+              Add family member
             </Link>
-          ))}
-          <Link
-            to="/family/new"
-            className="flex min-h-28 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            <Plus className="h-5 w-5" />
-            Add family member
-          </Link>
-        </div>
+          </div>
+        )}
       </section>
 
-      <section className="space-y-3">
-        <h2 className="text-sm font-medium text-foreground">Recent prescriptions</h2>
-        {summary.isLoading && <Skeleton className="h-20 rounded-xl" />}
-        {!summary.isLoading && (summary.data?.recent_prescriptions.length ?? 0) === 0 && (
-          <Card>
-            <CardContent className="p-6 text-center text-sm text-muted-foreground">
-              No prescriptions yet. Add a family member, then save their first prescription.
-            </CardContent>
-          </Card>
+      <section className="space-y-4">
+        <h2 className="text-section-title text-foreground">Recent prescriptions</h2>
+        {summary.isLoading && <Skeleton className="h-24 rounded-xl" />}
+        {!summary.isLoading && recent.length === 0 && (
+          <EmptyState
+            icon={FileHeart}
+            title="No prescriptions yet"
+            description="Once you save a prescription it will appear here with the most recent first."
+          />
         )}
-        <div className="space-y-2">
-          {(summary.data?.recent_prescriptions ?? []).map((p) => (
+        <div className="grid gap-3 lg:grid-cols-2">
+          {recent.map((p) => (
             <Link
               key={p.id}
               to="/prescriptions/$prescriptionId"
               params={{ prescriptionId: p.id }}
-              className="block rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary"
+              className="card-interactive animate-fade-in block p-4 sm:p-5"
             >
               <div className="flex items-baseline justify-between gap-3">
-                <span className="truncate font-medium text-foreground">
+                <span className="text-card-title truncate text-foreground">
                   {nameById.get(p.family_member_id) ?? "Family member"}
                 </span>
-                <span className="shrink-0 text-xs text-muted-foreground">
-                  {formatDate(p.prescription_date)}
-                </span>
+                <span className="text-meta shrink-0">{formatDate(p.prescription_date)}</span>
               </div>
-              <p className="mt-1 truncate text-sm text-muted-foreground">
+              <p className="text-body mt-1 truncate text-muted-foreground">
                 {p.doctor_name || "No doctor recorded"}
               </p>
             </Link>
