@@ -19,7 +19,7 @@ import { FileText, GripVertical, Loader2, Plus, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
+import { ConfirmDialog } from "@/components/confirm-dialog";
 import {
   removeAttachment,
   reorderAttachments,
@@ -30,6 +30,7 @@ import {
 } from "@/lib/attachments";
 import { attachmentsQuery } from "@/lib/queries";
 import { MAX_ATTACHMENTS, type Attachment } from "@/lib/types";
+import { useActionError } from "@/lib/use-action-error";
 
 function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () => void }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
@@ -46,7 +47,9 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`relative overflow-hidden rounded-xl border border-border bg-muted ${isDragging ? "opacity-60" : ""}`}
+      className={`relative overflow-hidden rounded-xl border border-border bg-muted transition-shadow ${
+        isDragging ? "opacity-70 shadow-[var(--shadow-lift)]" : ""
+      }`}
     >
       <div className="flex aspect-square items-center justify-center">
         {isImage(attachment.mime_type) && url ? (
@@ -54,7 +57,7 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
             src={url}
             alt={attachment.original_file_name}
             loading="lazy"
-            className="h-full w-full object-cover"
+            className="animate-fade-in h-full w-full object-cover"
           />
         ) : (
           <div className="flex flex-col items-center gap-1 text-muted-foreground">
@@ -67,18 +70,18 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
         type="button"
         aria-label="Remove attachment"
         onClick={onRemove}
-        className="absolute right-1 top-1 rounded-full bg-foreground/70 p-1 text-background"
+        className="absolute right-1.5 top-1.5 grid h-9 w-9 place-items-center rounded-full bg-foreground/70 text-background transition-colors hover:bg-destructive"
       >
-        <X className="h-3.5 w-3.5" />
+        <X className="h-4 w-4" />
       </button>
       <button
         type="button"
         aria-label="Reorder attachment"
-        className="absolute bottom-1 left-1 cursor-grab rounded-full bg-foreground/60 p-1 text-background touch-none"
+        className="absolute bottom-1.5 left-1.5 grid h-9 w-9 cursor-grab touch-none place-items-center rounded-full bg-foreground/60 text-background active:cursor-grabbing"
         {...attributes}
         {...listeners}
       >
-        <GripVertical className="h-3.5 w-3.5" />
+        <GripVertical className="h-4 w-4" />
       </button>
     </div>
   );
@@ -92,13 +95,18 @@ export function AttachmentManager({
   userId: string;
 }) {
   const queryClient = useQueryClient();
+  const reportError = useActionError();
   const { data: attachments = [], isLoading } = useQuery(attachmentsQuery(prescriptionId));
   const [items, setItems] = useState<Attachment[] | null>(null);
   const list = items ?? attachments;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [pendingRemoval, setPendingRemoval] = useState<Attachment | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }), useSensor(TouchSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 120, tolerance: 8 } }),
+  );
 
   const full = list.length >= MAX_ATTACHMENTS;
 
@@ -108,32 +116,45 @@ export function AttachmentManager({
     const remaining = MAX_ATTACHMENTS - list.length;
     const chosen = Array.from(files).slice(0, remaining);
     if (files.length > remaining) {
-      setError(`Only ${remaining} more file${remaining === 1 ? "" : "s"} can be added to this prescription.`);
+      setError("You've reached the 4-attachment limit for this prescription.");
     }
     setBusy(true);
+    let uploaded = 0;
     for (const file of chosen) {
       const invalid = validateFile(file);
       if (invalid) {
         setError(invalid);
+        toast.error(invalid);
         continue;
       }
       const { error: uploadError } = await uploadAttachment({ userId, prescriptionId, file });
-      if (uploadError) setError(uploadError);
+      if (uploadError) {
+        setError(uploadError);
+        toast.error(uploadError);
+      } else {
+        uploaded += 1;
+      }
     }
     setBusy(false);
     setItems(null);
     await queryClient.invalidateQueries({ queryKey: ["attachments", prescriptionId] });
+    await queryClient.invalidateQueries({ queryKey: ["prescriptions"] });
+    if (uploaded > 0) {
+      toast.success(uploaded === 1 ? "Photo uploaded" : `${uploaded} files uploaded`);
+    }
     if (inputRef.current) inputRef.current.value = "";
   }
 
-  async function handleRemove(attachment: Attachment) {
+  async function confirmRemove() {
+    if (!pendingRemoval) return;
     try {
-      await removeAttachment(attachment);
+      await removeAttachment(pendingRemoval);
       setItems(null);
       await queryClient.invalidateQueries({ queryKey: ["attachments", prescriptionId] });
       toast.success("Attachment removed");
-    } catch {
-      setError("We couldn't remove that file. Please try again.");
+      setPendingRemoval(null);
+    } catch (err) {
+      setError(reportError(err, { fallback: "We couldn't remove that file. Please try again." }));
     }
   }
 
@@ -148,30 +169,31 @@ export function AttachmentManager({
       await reorderAttachments(prescriptionId, next.map((a) => a.id));
       await queryClient.invalidateQueries({ queryKey: ["attachments", prescriptionId] });
       setItems(null);
-    } catch {
+      toast.success("Order saved");
+    } catch (err) {
       setItems(null);
-      setError("We couldn't save the new order. Please try again.");
+      setError(reportError(err, { fallback: "We couldn't save the new order. Please try again." }));
     }
   }
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-foreground">Attachments</span>
-        <span className="text-xs text-muted-foreground">
-          {list.length}/{MAX_ATTACHMENTS} attachments
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-card-title text-foreground">Attachments</span>
+        <span className="text-meta shrink-0">
+          {list.length}/{MAX_ATTACHMENTS}
         </span>
       </div>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={list.map((a) => a.id)} strategy={rectSortingStrategy}>
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {isLoading && <div className="aspect-square animate-pulse rounded-xl bg-muted" />}
             {list.map((attachment) => (
               <Thumb
                 key={attachment.id}
                 attachment={attachment}
-                onRemove={() => handleRemove(attachment)}
+                onRemove={() => setPendingRemoval(attachment)}
               />
             ))}
             {!full && (
@@ -179,17 +201,17 @@ export function AttachmentManager({
                 type="button"
                 onClick={() => inputRef.current?.click()}
                 disabled={busy}
-                className="flex aspect-square flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border text-sm text-muted-foreground transition-colors hover:border-primary hover:bg-secondary/50 hover:text-primary disabled:opacity-60"
               >
                 {busy ? (
                   <>
                     <Loader2 className="h-5 w-5 animate-spin" />
-                    <span className="text-[10px]">optimizing…</span>
+                    <span className="text-xs">Uploading…</span>
                   </>
                 ) : (
                   <>
                     <Plus className="h-5 w-5" />
-                    <span className="text-[10px]">Add file</span>
+                    <span className="text-xs">Add file</span>
                   </>
                 )}
               </button>
@@ -199,11 +221,13 @@ export function AttachmentManager({
       </DndContext>
 
       {full && (
-        <p className="text-xs text-muted-foreground">
-          Maximum of 4 attachments reached — remove one to add another.
+        <p className="text-meta">
+          You've reached the 4-attachment limit for this prescription — remove one to add another.
         </p>
       )}
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && (
+        <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
+      )}
 
       <input
         ref={inputRef}
@@ -213,10 +237,20 @@ export function AttachmentManager({
         className="hidden"
         onChange={(e) => handleFiles(e.target.files)}
       />
-      <p className="text-xs text-muted-foreground">
-        JPG, PNG, WebP or PDF · up to 20 MB each. Images are optimized before upload.
+      <p className="text-meta">
+        JPG, PNG, WebP or PDF · up to 20 MB each. Images are optimized before upload. Drag the
+        handle to reorder.
       </p>
-      <Button type="button" variant="ghost" size="sm" className="hidden" />
+
+      <ConfirmDialog
+        open={pendingRemoval !== null}
+        onOpenChange={(open) => !open && setPendingRemoval(null)}
+        title="Remove this attachment?"
+        description="The file will be permanently deleted from this prescription."
+        confirmLabel="Remove"
+        busyLabel="Removing…"
+        onConfirm={confirmRemove}
+      />
     </div>
   );
 }
