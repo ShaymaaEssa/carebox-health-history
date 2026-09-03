@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -10,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { prescriptionQuery } from "@/lib/queries";
+import { useActionError } from "@/lib/use-action-error";
 
 export const Route = createFileRoute("/_authenticated/prescriptions/$prescriptionId/edit")({
   head: () => ({
@@ -27,6 +29,7 @@ function EditPrescription() {
   const { prescriptionId } = Route.useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const reportError = useActionError();
   const { user } = useAuth();
   const prescription = useQuery(prescriptionQuery(prescriptionId));
 
@@ -45,8 +48,7 @@ function EditPrescription() {
     setNotes(prescription.data.notes ?? "");
   }, [prescription.data]);
 
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
+  async function save() {
     setBusy(true);
     setError(null);
     const { error: updateError } = await supabase
@@ -60,22 +62,33 @@ function EditPrescription() {
       .eq("id", prescriptionId);
     setBusy(false);
     if (updateError) {
-      setError("We couldn't save your changes. Please try again.");
+      setError(
+        reportError(updateError, {
+          fallback: "We couldn't save your changes. Please try again.",
+          retry: save,
+        }),
+      );
       return;
     }
     await queryClient.invalidateQueries();
-    toast.success("Prescription updated");
+    toast.success("Prescription saved");
     navigate({ to: "/prescriptions/$prescriptionId", params: { prescriptionId }, replace: true });
+  }
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    await save();
   }
 
   return (
     <div>
       <PageHeader
         title="Edit prescription"
+        subtitle="Changes to details save when you submit; attachment changes save immediately."
         backTo="/prescriptions/$prescriptionId"
         backParams={{ prescriptionId }}
       />
-      <form className="space-y-6" onSubmit={handleSubmit}>
+      <form className="max-w-3xl space-y-8" onSubmit={handleSubmit}>
         <PrescriptionFields
           date={date}
           setDate={setDate}
@@ -85,13 +98,17 @@ function EditPrescription() {
           setSpecialty={setSpecialty}
           notes={notes}
           setNotes={setNotes}
+          disabled={busy}
         />
 
         {user && <AttachmentManager prescriptionId={prescriptionId} userId={user.id} />}
 
-        {error && <p className="text-sm text-destructive">{error}</p>}
+        {error && (
+          <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
+        )}
 
-        <Button type="submit" className="h-12 w-full" disabled={busy}>
+        <Button type="submit" className="h-12 w-full sm:w-auto sm:min-w-48" disabled={busy}>
+          {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {busy ? "Saving…" : "Save changes"}
         </Button>
       </form>
