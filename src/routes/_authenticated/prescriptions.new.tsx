@@ -12,7 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { uploadAttachment, validateFile } from "@/lib/attachments";
 import { useAuth } from "@/lib/auth";
 import { MAX_ATTACHMENTS } from "@/lib/types";
-import { FileText, Plus, X } from "lucide-react";
+import { useActionError } from "@/lib/use-action-error";
+import { FileText, Loader2, Plus, X } from "lucide-react";
 
 const searchSchema = z.object({ memberId: fallback(z.string(), "").default("") });
 
@@ -33,6 +34,7 @@ function NewPrescription() {
   const { memberId } = Route.useSearch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const reportError = useActionError();
   const { user } = useAuth();
 
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
@@ -52,11 +54,15 @@ function NewPrescription() {
     const accepted: File[] = [];
     for (const file of Array.from(list).slice(0, remaining)) {
       const invalid = validateFile(file);
-      if (invalid) setError(invalid);
-      else accepted.push(file);
+      if (invalid) {
+        setError(invalid);
+        toast.error(invalid);
+      } else accepted.push(file);
     }
     if (list.length > remaining) {
-      setError(`You can attach at most ${MAX_ATTACHMENTS} files to a prescription.`);
+      const message = "You've reached the 4-attachment limit for this prescription.";
+      setError(message);
+      toast.error(message);
     }
     setFiles((prev) => [...prev, ...accepted]);
   }
@@ -82,7 +88,11 @@ function NewPrescription() {
 
     if (insertError || !data) {
       setBusy(false);
-      setError("We couldn't save this prescription. Please try again.");
+      setError(
+        reportError(insertError, {
+          fallback: "Something went wrong saving this — please try again.",
+        }),
+      );
       return;
     }
 
@@ -99,8 +109,12 @@ function NewPrescription() {
 
     await queryClient.invalidateQueries();
     setBusy(false);
-    if (uploadIssue) toast.error(uploadIssue);
-    else toast.success("Prescription saved");
+    if (uploadIssue) {
+      toast.error(uploadIssue);
+      toast.success("Prescription saved");
+    } else {
+      toast.success(files.length ? "Prescription saved with attachments" : "Prescription saved");
+    }
     navigate({ to: "/prescriptions/$prescriptionId", params: { prescriptionId }, replace: true });
   }
 
@@ -108,7 +122,7 @@ function NewPrescription() {
     return (
       <div>
         <PageHeader title="Add prescription" backTo="/dashboard" />
-        <p className="text-sm text-muted-foreground">
+        <p className="text-body text-muted-foreground">
           Open a family member first, then add a prescription for them.
         </p>
       </div>
@@ -117,8 +131,13 @@ function NewPrescription() {
 
   return (
     <div>
-      <PageHeader title="Add prescription" backTo="/family/$memberId" backParams={{ memberId }} />
-      <form className="space-y-6" onSubmit={handleSubmit}>
+      <PageHeader
+        title="Add prescription"
+        subtitle="Record the visit details and attach up to four photos or PDFs."
+        backTo="/family/$memberId"
+        backParams={{ memberId }}
+      />
+      <form className="max-w-3xl space-y-8" onSubmit={handleSubmit}>
         <PrescriptionFields
           date={date}
           setDate={setDate}
@@ -128,17 +147,18 @@ function NewPrescription() {
           setSpecialty={setSpecialty}
           notes={notes}
           setNotes={setNotes}
+          disabled={busy}
         />
 
         <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-foreground">Attachments</span>
-            <span className="text-xs text-muted-foreground">
-              {files.length}/{MAX_ATTACHMENTS} attachments
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-card-title text-foreground">Attachments</span>
+            <span className="text-meta shrink-0">
+              {files.length}/{MAX_ATTACHMENTS}
             </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {files.map((file, index) => (
               <div
                 key={`${file.name}-${index}`}
@@ -161,21 +181,22 @@ function NewPrescription() {
                   type="button"
                   aria-label="Remove file"
                   onClick={() => setFiles((prev) => prev.filter((_, i) => i !== index))}
-                  className="absolute right-1 top-1 rounded-full bg-foreground/70 p-1 text-background"
+                  className="absolute right-1.5 top-1.5 grid h-9 w-9 place-items-center rounded-full bg-foreground/70 text-background transition-colors hover:bg-destructive"
                 >
-                  <X className="h-3.5 w-3.5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             ))}
             {!full && (
-              <label className="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <label className="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border text-sm text-muted-foreground transition-colors hover:border-primary hover:bg-secondary/50 hover:text-primary">
                 <Plus className="h-5 w-5" />
-                <span className="text-[10px]">Add file</span>
+                <span className="text-xs">Add file</span>
                 <input
                   type="file"
                   multiple
                   accept="image/jpeg,image/png,image/webp,application/pdf"
                   className="hidden"
+                  disabled={busy}
                   onChange={(e) => {
                     addFiles(e.target.files);
                     e.target.value = "";
@@ -186,18 +207,21 @@ function NewPrescription() {
           </div>
 
           {full && (
-            <p className="text-xs text-muted-foreground">
-              Maximum of 4 attachments reached — remove one to add another.
+            <p className="text-meta">
+              You've reached the 4-attachment limit for this prescription — remove one to add another.
             </p>
           )}
-          <p className="text-xs text-muted-foreground">
+          <p className="text-meta">
             JPG, PNG, WebP or PDF · up to 20 MB each. Images are optimized before upload.
           </p>
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && (
+            <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
+          )}
         </div>
 
-        <Button type="submit" className="h-12 w-full" disabled={busy}>
-          {busy ? "Saving…" : "Save prescription"}
+        <Button type="submit" className="h-12 w-full sm:w-auto sm:min-w-52" disabled={busy}>
+          {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {busy ? (files.length ? "Uploading…" : "Saving…") : "Save prescription"}
         </Button>
       </form>
     </div>
