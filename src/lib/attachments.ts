@@ -1,7 +1,9 @@
 import imageCompression from "browser-image-compression";
 
 import { ATTACHMENTS_BUCKET, supabase } from "@/integrations/supabase/client";
+import { ATTACHMENT_LIMIT_MESSAGE, friendlyMessage } from "./errors";
 import type { Attachment } from "./types";
+
 
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 const ALLOWED_TYPES = [...IMAGE_TYPES, "application/pdf"] as const;
@@ -50,13 +52,13 @@ export async function prepareFile(file: File): Promise<{ blob: Blob; error?: und
   }
 }
 
-export const ATTACHMENT_LIMIT_MESSAGE =
-  "This prescription already has 4 attachments — remove one before adding another.";
+export { ATTACHMENT_LIMIT_MESSAGE };
 
-function friendlyError(message: string) {
-  if (message.toLowerCase().includes("attachment limit reached")) return ATTACHMENT_LIMIT_MESSAGE;
-  return "Something went wrong while saving this file. Please try again.";
+function friendlyUploadError(error: unknown) {
+  return friendlyMessage(error, "Something went wrong while saving this file. Please try again.");
 }
+
+
 
 /** Upload a validated file and register its metadata row via create_attachment(). */
 export async function uploadAttachment(params: {
@@ -100,7 +102,7 @@ export async function uploadAttachment(params: {
   if (rpcError) {
     // Clean up the orphaned storage object.
     await supabase.storage.from(ATTACHMENTS_BUCKET).remove([storagePath]);
-    return { error: friendlyError(rpcError.message) };
+    return { error: friendlyUploadError(rpcError) };
   }
 
   return {};
