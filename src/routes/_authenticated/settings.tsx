@@ -1,11 +1,16 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Loader2, LogOut } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
+import { ConfirmDialog } from "@/components/confirm-dialog";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
+import { useActionError } from "@/lib/use-action-error";
 
 export const Route = createFileRoute("/_authenticated/settings")({
   head: () => ({
@@ -23,6 +28,9 @@ function Settings() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const reportError = useActionError();
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   const profile = useQuery({
     queryKey: ["profile", user?.id],
@@ -39,33 +47,69 @@ function Settings() {
   });
 
   async function handleSignOut() {
-    await queryClient.cancelQueries();
-    queryClient.clear();
-    await supabase.auth.signOut();
-    navigate({ to: "/auth", replace: true });
+    setBusy(true);
+    try {
+      await queryClient.cancelQueries();
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      queryClient.clear();
+      toast.success("Signed out");
+      navigate({ to: "/auth", replace: true });
+    } catch (error) {
+      reportError(error, { fallback: "We couldn't sign you out. Please try again." });
+    } finally {
+      setBusy(false);
+    }
   }
 
-  return (
-    <div>
-      <PageHeader title="Account" backTo="/dashboard" />
-      <Card className="mb-4">
-        <CardContent className="space-y-1 p-4 text-sm">
-          <p className="font-medium text-foreground">{profile.data?.full_name || "Your account"}</p>
-          <p className="text-muted-foreground">{user?.email}</p>
-        </CardContent>
-      </Card>
+  const name = (profile.data?.full_name || "Your account").trim();
+  const initial = name.charAt(0).toUpperCase();
 
-      <Button variant="outline" className="h-12 w-full" onClick={handleSignOut}>
-        Sign out
+  return (
+    <div className="max-w-2xl">
+      <PageHeader title="Account" subtitle="Your CareBox sign-in details." backTo="/dashboard" />
+
+      <div className="surface-card animate-fade-in flex items-center gap-4 p-4 sm:p-5">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-secondary text-lg font-semibold text-primary">
+          {initial}
+        </span>
+        <div className="min-w-0">
+          {profile.isLoading ? (
+            <Skeleton className="h-5 w-40" />
+          ) : (
+            <p className="text-card-title truncate text-foreground">{name}</p>
+          )}
+          <p className="text-meta truncate">{user?.email}</p>
+        </div>
+      </div>
+
+      <Button
+        variant="outline"
+        className="mt-4 h-12 w-full sm:w-auto sm:min-w-40"
+        onClick={() => setConfirmOpen(true)}
+        disabled={busy}
+      >
+        {busy ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
+        {busy ? "Signing out…" : "Sign out"}
       </Button>
 
-      <p className="mt-6 text-xs text-muted-foreground">
+      <p className="text-meta mt-8">
         Need to delete your account?{" "}
         <a className="text-primary underline-offset-4 hover:underline" href="mailto:support@carebox.app">
           Contact support
         </a>{" "}
         and we'll remove your data.
       </p>
+
+      <ConfirmDialog
+        open={confirmOpen}
+        onOpenChange={setConfirmOpen}
+        title="Sign out of CareBox?"
+        description="You'll need to sign in again to view your family's records."
+        confirmLabel="Sign out"
+        busyLabel="Signing out…"
+        onConfirm={handleSignOut}
+      />
     </div>
   );
 }

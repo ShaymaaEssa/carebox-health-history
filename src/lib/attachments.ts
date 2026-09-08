@@ -50,13 +50,12 @@ export async function prepareFile(file: File): Promise<{ blob: Blob; error?: und
   }
 }
 
-export const ATTACHMENT_LIMIT_MESSAGE =
-  "This prescription already has 4 attachments — remove one before adding another.";
+export { ATTACHMENT_LIMIT_MESSAGE } from "./errors";
 
-function friendlyError(message: string) {
-  if (message.toLowerCase().includes("attachment limit reached")) return ATTACHMENT_LIMIT_MESSAGE;
-  return "Something went wrong while saving this file. Please try again.";
+function friendlyUploadError(error: unknown) {
+  return friendlyMessage(error, "Something went wrong while saving this file. Please try again.");
 }
+
 
 /** Upload a validated file and register its metadata row via create_attachment(). */
 export async function uploadAttachment(params: {
