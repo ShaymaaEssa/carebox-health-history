@@ -103,7 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      // { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }, { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }, { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }, { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' }, { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
     ],
 
   }),
