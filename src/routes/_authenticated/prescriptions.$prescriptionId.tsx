@@ -27,7 +27,7 @@ export const Route = createFileRoute("/_authenticated/prescriptions/$prescriptio
 });
 
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
+  return new Date(value).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -212,7 +212,7 @@ function PrescriptionDetail() {
         <div className="space-y-4">
           {prescription.isLoading && <Skeleton className="h-32 rounded-xl" />}
           {prescription.data && (
-            <div className="surface-card animate-fade-in space-y-3 p-4 sm:p-5">
+            <div className="stat-card animate-fade-in space-y-3 p-4 sm:p-5">
               <div>
                 <p className="text-eyebrow">Doctor</p>
                 <p className="text-body mt-0.5 text-foreground">

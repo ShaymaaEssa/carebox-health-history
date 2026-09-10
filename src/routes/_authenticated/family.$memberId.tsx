@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { familyMemberQuery, memberPrescriptionsQuery } from "@/lib/queries";
 import { useActionError } from "@/lib/use-action-error";
+import { memberInitials, memberStyle, relationshipBadgeClass } from "@/lib/member-style";
 
 export const Route = createFileRoute("/_authenticated/family/$memberId")({
   head: () => ({
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/_authenticated/family/$memberId")({
 });
 
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
+  return new Date(value).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -92,6 +93,7 @@ function MemberDetail() {
 
       <div className="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-start">
         <div className="space-y-4">
+          {member.data && <div className="surface-card flex items-center gap-3 p-4"><span className={`grid h-14 w-14 place-items-center rounded-full font-bold ${memberStyle(memberId).avatar}`}>{memberInitials(member.data.name)}</span><div><p className="text-card-title text-foreground">{member.data.name}</p><span className={relationshipBadgeClass(memberId, "mt-1")}>{member.data.relationship ?? "Family"}</span></div></div>}
           {member.data?.notes && (
             <div className="surface-card text-body p-4 text-muted-foreground">{member.data.notes}</div>
           )}

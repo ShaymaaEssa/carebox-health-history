@@ -69,7 +69,7 @@ function Settings() {
     <div className="max-w-2xl">
       <PageHeader title="Account" subtitle="Your CareBox sign-in details." backTo="/dashboard" />
 
-      <div className="surface-card animate-fade-in flex items-center gap-4 p-4 sm:p-5">
+      <div className="stat-card animate-fade-in flex items-center gap-4 p-4 sm:p-5">
         <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-secondary text-lg font-semibold text-primary">
           {initial}
         </span>

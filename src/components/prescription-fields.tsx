@@ -1,6 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { FormIntro } from "@/components/form-intro";
+import { FileHeart } from "lucide-react";
 
 export function PrescriptionFields(props: {
   date: string;
@@ -16,7 +18,8 @@ export function PrescriptionFields(props: {
   const { date, setDate, doctor, setDoctor, specialty, setSpecialty, notes, setNotes, disabled } =
     props;
   return (
-    <div className="grid gap-5 sm:grid-cols-2">
+    <div className="form-surface grid gap-5 sm:grid-cols-2">
+      <div className="sm:col-span-2"><FormIntro icon={FileHeart} label="Prescription details" detail="Keep the visit information with the original document." /></div>
       <div className="min-w-0 space-y-2">
         <Label htmlFor="date">Date</Label>
         <Input

@@ -150,7 +150,7 @@ function NewPrescription() {
           disabled={busy}
         />
 
-        <div className="space-y-3">
+        <div className="form-surface space-y-3">
           <div className="flex items-center justify-between gap-3">
             <span className="text-card-title text-foreground">Attachments</span>
             <span className="text-meta shrink-0">
