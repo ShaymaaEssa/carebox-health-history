@@ -54,7 +54,7 @@ function ResetPassword() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
+    <div className="brand-texture flex min-h-screen items-center justify-center bg-brand-deep px-4 py-10">
       <div className="surface-card animate-rise-in w-full max-w-md space-y-6 p-6 sm:p-8">
         <div className="space-y-2">
           <span className="grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary">

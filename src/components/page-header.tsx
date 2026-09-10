@@ -16,7 +16,7 @@ export function PageHeader({
   action?: ReactNode | undefined;
 }) {
   return (
-    <header className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 sm:mb-8 sm:gap-4">
+    <header className="page-band -mx-4 mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 px-4 pb-5 sm:-mx-6 sm:mb-8 sm:gap-4 sm:px-6 lg:-mx-10 lg:px-10">
       <div className="min-w-0">
         {backTo && (
           <Link
@@ -29,7 +29,7 @@ export function PageHeader({
             <ChevronLeft className="h-4 w-4" /> Back
           </Link>
         )}
-        <h1 className="text-page-title truncate text-foreground">{title}</h1>
+        <h1 className="text-page-title text-foreground">{title}</h1>
         {subtitle && <p className="text-meta mt-1.5">{subtitle}</p>}
       </div>
       {action}

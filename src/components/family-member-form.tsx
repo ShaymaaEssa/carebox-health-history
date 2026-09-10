@@ -1,11 +1,12 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
-import { Loader2 } from "lucide-react";
+import { Loader2, UsersRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { PageHeader } from "@/components/page-header";
+import { FormIntro } from "@/components/form-intro";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -102,7 +103,8 @@ export function FamilyMemberForm({ memberId }: { memberId?: string }) {
         subtitle="Keep a separate record for each person you look after."
         backTo="/dashboard"
       />
-      <form className="max-w-2xl space-y-6" onSubmit={handleSubmit}>
+      <form className="form-surface max-w-2xl space-y-6" onSubmit={handleSubmit}>
+        <FormIntro icon={UsersRound} label="Personal details" detail="A private record for someone in your care." />
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="min-w-0 space-y-2">
             <Label htmlFor="name">Name</Label>

@@ -20,6 +20,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { friendlyMessage } from "@/lib/errors";
 import { familyMembersQuery } from "@/lib/queries";
 import type { PrescriptionSearchRow } from "@/lib/types";
+import { relationshipBadgeClass } from "@/lib/member-style";
 
 export const Route = createFileRoute("/_authenticated/search")({
   head: () => ({
@@ -34,7 +35,7 @@ export const Route = createFileRoute("/_authenticated/search")({
 });
 
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
+  return new Date(value).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -184,6 +185,7 @@ function SearchPage() {
               <p className="text-body mt-1 text-muted-foreground">
                 {row.doctor_name || "No doctor recorded"}
               </p>
+              <span className={relationshipBadgeClass(row.family_member_id, "mt-2")}>Family record</span>
               {row.specialty && <p className="text-meta">{row.specialty}</p>}
             </Link>
           ))}

@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { HeartPulse, Loader2 } from "lucide-react";
+import { HeartPulse, Loader2, Pill, ShieldCheck, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -122,7 +122,11 @@ function AuthPage() {
 
   return (
     <div className="grid min-h-screen bg-background lg:grid-cols-[1.1fr_1fr]">
-      <div className="relative hidden flex-col justify-between bg-primary px-12 py-14 text-primary-foreground lg:flex">
+      <div className="brand-texture relative hidden overflow-hidden flex-col justify-between bg-brand-deep px-12 py-14 text-primary-foreground lg:flex">
+        <HeartPulse className="absolute right-[12%] top-[14%] h-14 w-14 rotate-6 opacity-[0.06]" />
+        <Pill className="absolute left-[14%] top-[37%] h-11 w-11 -rotate-12 opacity-[0.07]" />
+        <ShieldCheck className="absolute bottom-[24%] right-[18%] h-16 w-16 opacity-[0.06]" />
+        <Sparkles className="absolute bottom-[12%] left-[9%] h-9 w-9 opacity-[0.06]" />
         <div className="flex items-center gap-2">
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-foreground/15">
             <HeartPulse className="h-5 w-5" />

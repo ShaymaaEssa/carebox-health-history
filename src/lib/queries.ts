@@ -82,3 +82,19 @@ export const attachmentsQuery = (prescriptionId: string) =>
     queryKey: ["attachments", prescriptionId],
     queryFn: () => listAttachments(prescriptionId),
   });
+
+export const firstImageAttachmentQuery = (prescriptionId: string) =>
+  queryOptions({
+    queryKey: ["attachments", prescriptionId, "first-image"],
+    queryFn: async (): Promise<{ storage_path: string } | null> => {
+      const { data, error } = await supabase
+        .from("prescription_attachments")
+        .select("storage_path, mime_type")
+        .eq("prescription_id", prescriptionId)
+        .order("display_order", { ascending: true })
+        .limit(4);
+      if (error) throw error;
+      return (data ?? []).find((attachment) => attachment.mime_type.startsWith("image/")) ?? null;
+    },
+    staleTime: 5 * 60 * 1000,
+  });

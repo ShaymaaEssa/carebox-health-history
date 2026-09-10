@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileHeart, Plus, Users } from "lucide-react";
+import { FileHeart, FileText, Pill, Plus, Users } from "lucide-react";
 
 import { EmptyState } from "@/components/empty-state";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { dashboardQuery, familyMembersQuery } from "@/lib/queries";
+import { signedUrl } from "@/lib/attachments";
+import { memberInitials, memberStyle, relationshipBadgeClass } from "@/lib/member-style";
+import { dashboardQuery, familyMembersQuery, firstImageAttachmentQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -19,21 +21,56 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
 });
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join("");
-}
-
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
+  return new Date(value).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
+}
+
+function RecentPrescriptionCard({
+  prescription,
+  memberName,
+  relationship,
+}: {
+  prescription: { id: string; family_member_id: string; prescription_date: string; doctor_name: string | null };
+  memberName: string;
+  relationship: string;
+}) {
+  const attachment = useQuery(firstImageAttachmentQuery(prescription.id));
+  const preview = useQuery({
+    queryKey: ["signed-url", attachment.data?.storage_path],
+    queryFn: () => signedUrl(attachment.data?.storage_path ?? ""),
+    enabled: Boolean(attachment.data?.storage_path),
+    staleTime: 50 * 60 * 1000,
+  });
+
+  return (
+    <Link
+      to="/prescriptions/$prescriptionId"
+      params={{ prescriptionId: prescription.id }}
+      className="card-interactive animate-fade-in grid grid-cols-[4.75rem_minmax(0,1fr)] overflow-hidden p-2"
+    >
+      <div className="grid aspect-square place-items-center overflow-hidden rounded-lg bg-brand-soft text-primary">
+        {preview.data ? (
+          <img src={preview.data} alt="Prescription attachment preview" loading="lazy" className="h-full w-full object-cover" />
+        ) : attachment.isLoading ? (
+          <Skeleton className="h-full w-full rounded-lg" />
+        ) : (
+          <FileText className="h-6 w-6" />
+        )}
+      </div>
+      <div className="min-w-0 self-center px-3 py-1">
+        <div className="flex items-start justify-between gap-2">
+          <span className="text-card-title truncate text-foreground">{memberName}</span>
+          <span className="text-meta shrink-0">{formatDate(prescription.prescription_date)}</span>
+        </div>
+        <span className={relationshipBadgeClass(prescription.family_member_id, "mt-1")}>{relationship}</span>
+        <p className="text-meta mt-1 truncate">{prescription.doctor_name || "No doctor recorded"}</p>
+      </div>
+    </Link>
+  );
 }
 
 function Dashboard() {
@@ -41,6 +78,7 @@ function Dashboard() {
   const members = useQuery(familyMembersQuery);
 
   const nameById = new Map((members.data ?? []).map((m) => [m.id, m.name]));
+  const relationshipById = new Map((members.data ?? []).map((m) => [m.id, m.relationship ?? "Family"]));
   const countById = new Map(
     (summary.data?.per_family_member ?? []).map((p) => [p.family_member_id, p.prescription_count]),
   );
@@ -49,7 +87,7 @@ function Dashboard() {
 
   return (
     <div className="space-y-10">
-      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+      <header className="page-band -mx-4 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 px-4 pb-6 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
         <div className="min-w-0">
           <p className="text-eyebrow">Your household</p>
           <h1 className="text-page-title mt-1 text-foreground">CareBox</h1>
@@ -64,11 +102,14 @@ function Dashboard() {
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {[
-          { label: "Family members", value: summary.data?.total_family_members ?? 0 },
-          { label: "Prescriptions", value: summary.data?.total_prescriptions ?? 0 },
+          { label: "Family members", value: summary.data?.total_family_members ?? 0, icon: Users },
+          { label: "Prescriptions", value: summary.data?.total_prescriptions ?? 0, icon: Pill },
         ].map((stat) => (
-          <div key={stat.label} className="surface-card p-4 sm:p-5">
-            <p className="text-eyebrow">{stat.label}</p>
+          <div key={stat.label} className="stat-card p-4 sm:p-5">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-eyebrow">{stat.label}</p>
+              <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary"><stat.icon className="h-4 w-4" /></span>
+            </div>
             {summary.isLoading ? (
               <Skeleton className="mt-2 h-8 w-12" />
             ) : (
@@ -111,11 +152,11 @@ function Dashboard() {
                 params={{ memberId: member.id }}
                 className="card-interactive animate-fade-in block p-4 sm:p-5"
               >
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-secondary text-sm font-semibold text-primary">
-                  {initials(member.name) || <Users className="h-4 w-4" />}
+                <div className={`grid h-12 w-12 place-items-center rounded-full text-sm font-bold ${memberStyle(member.id).avatar}`}>
+                  {memberInitials(member.name) || <Users className="h-4 w-4" />}
                 </div>
                 <p className="text-card-title mt-3 truncate text-foreground">{member.name}</p>
-                <p className="text-meta">{member.relationship ?? "Family"}</p>
+                <span className={relationshipBadgeClass(member.id, "mt-1")}>{member.relationship ?? "Family"}</span>
                 <p className="text-meta mt-1">{countById.get(member.id) ?? 0} prescriptions</p>
               </Link>
             ))}
@@ -141,24 +182,7 @@ function Dashboard() {
           />
         )}
         <div className="grid gap-3 lg:grid-cols-2">
-          {recent.map((p) => (
-            <Link
-              key={p.id}
-              to="/prescriptions/$prescriptionId"
-              params={{ prescriptionId: p.id }}
-              className="card-interactive animate-fade-in block p-4 sm:p-5"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="text-card-title truncate text-foreground">
-                  {nameById.get(p.family_member_id) ?? "Family member"}
-                </span>
-                <span className="text-meta shrink-0">{formatDate(p.prescription_date)}</span>
-              </div>
-              <p className="text-body mt-1 truncate text-muted-foreground">
-                {p.doctor_name || "No doctor recorded"}
-              </p>
-            </Link>
-          ))}
+          {recent.map((p) => <RecentPrescriptionCard key={p.id} prescription={p} memberName={nameById.get(p.family_member_id) ?? "Family member"} relationship={relationshipById.get(p.family_member_id) ?? "Family"} />)}
         </div>
       </section>
     </div>
