@@ -13,7 +13,7 @@ import { useAuth } from "@/lib/auth";
 import { prescriptionQuery } from "@/lib/queries";
 import { useActionError } from "@/lib/use-action-error";
 
-export const Route = createFileRoute("/_authenticated/prescriptions/$prescriptionId/edit")({
+export const Route = createFileRoute("/_authenticated/prescriptions_/$prescriptionId/edit")({
   head: () => ({
     meta: [
       { title: "Edit prescription — CareBox" },

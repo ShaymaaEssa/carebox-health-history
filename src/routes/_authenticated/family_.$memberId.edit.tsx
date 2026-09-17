@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { FamilyMemberForm } from "@/components/family-member-form";
 
-export const Route = createFileRoute("/_authenticated/family/$memberId/edit")({
+export const Route = createFileRoute("/_authenticated/family_/$memberId/edit")({
   head: () => ({
     meta: [
       { title: "Edit family member — CareBox" },
