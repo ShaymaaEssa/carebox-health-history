@@ -20,8 +20,8 @@ import { Route as AuthenticatedFamilyMemberIdRouteImport } from './routes/_authe
 import { Route as AuthenticatedFamilyNewRouteImport } from './routes/_authenticated/family.new'
 import { Route as AuthenticatedPrescriptionsPrescriptionIdRouteImport } from './routes/_authenticated/prescriptions.$prescriptionId'
 import { Route as AuthenticatedPrescriptionsNewRouteImport } from './routes/_authenticated/prescriptions.new'
-import { Route as AuthenticatedFamilyMemberIdEditRouteImport } from './routes/_authenticated/family.$memberId.edit'
-import { Route as AuthenticatedPrescriptionsPrescriptionIdEditRouteImport } from './routes/_authenticated/prescriptions.$prescriptionId.edit'
+import { Route as AuthenticatedFamilyMemberIdEditRouteImport } from './routes/_authenticated/family_.$memberId.edit'
+import { Route as AuthenticatedPrescriptionsPrescriptionIdEditRouteImport } from './routes/_authenticated/prescriptions_.$prescriptionId.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,15 +82,15 @@ const AuthenticatedPrescriptionsNewRoute =
   } as any)
 const AuthenticatedFamilyMemberIdEditRoute =
   AuthenticatedFamilyMemberIdEditRouteImport.update({
-    id: '/edit',
-    path: '/edit',
-    getParentRoute: () => AuthenticatedFamilyMemberIdRoute,
+    id: '/family_/$memberId/edit',
+    path: '/family/$memberId/edit',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedPrescriptionsPrescriptionIdEditRoute =
   AuthenticatedPrescriptionsPrescriptionIdEditRouteImport.update({
-    id: '/edit',
-    path: '/edit',
-    getParentRoute: () => AuthenticatedPrescriptionsPrescriptionIdRoute,
+    id: '/prescriptions_/$prescriptionId/edit',
+    path: '/prescriptions/$prescriptionId/edit',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -100,9 +100,9 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/search': typeof AuthenticatedSearchRoute
   '/settings': typeof AuthenticatedSettingsRoute
-  '/family/$memberId': typeof AuthenticatedFamilyMemberIdRouteWithChildren
+  '/family/$memberId': typeof AuthenticatedFamilyMemberIdRoute
   '/family/new': typeof AuthenticatedFamilyNewRoute
-  '/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren
+  '/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRoute
   '/prescriptions/new': typeof AuthenticatedPrescriptionsNewRoute
   '/family/$memberId/edit': typeof AuthenticatedFamilyMemberIdEditRoute
   '/prescriptions/$prescriptionId/edit': typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
@@ -114,9 +114,9 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/search': typeof AuthenticatedSearchRoute
   '/settings': typeof AuthenticatedSettingsRoute
-  '/family/$memberId': typeof AuthenticatedFamilyMemberIdRouteWithChildren
+  '/family/$memberId': typeof AuthenticatedFamilyMemberIdRoute
   '/family/new': typeof AuthenticatedFamilyNewRoute
-  '/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren
+  '/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRoute
   '/prescriptions/new': typeof AuthenticatedPrescriptionsNewRoute
   '/family/$memberId/edit': typeof AuthenticatedFamilyMemberIdEditRoute
   '/prescriptions/$prescriptionId/edit': typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
@@ -130,12 +130,12 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/search': typeof AuthenticatedSearchRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
-  '/_authenticated/family/$memberId': typeof AuthenticatedFamilyMemberIdRouteWithChildren
+  '/_authenticated/family/$memberId': typeof AuthenticatedFamilyMemberIdRoute
   '/_authenticated/family/new': typeof AuthenticatedFamilyNewRoute
-  '/_authenticated/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren
+  '/_authenticated/prescriptions/$prescriptionId': typeof AuthenticatedPrescriptionsPrescriptionIdRoute
   '/_authenticated/prescriptions/new': typeof AuthenticatedPrescriptionsNewRoute
-  '/_authenticated/family/$memberId/edit': typeof AuthenticatedFamilyMemberIdEditRoute
-  '/_authenticated/prescriptions/$prescriptionId/edit': typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
+  '/_authenticated/family_/$memberId/edit': typeof AuthenticatedFamilyMemberIdEditRoute
+  '/_authenticated/prescriptions_/$prescriptionId/edit': typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -179,8 +179,8 @@ export interface FileRouteTypes {
     | '/_authenticated/family/new'
     | '/_authenticated/prescriptions/$prescriptionId'
     | '/_authenticated/prescriptions/new'
-    | '/_authenticated/family/$memberId/edit'
-    | '/_authenticated/prescriptions/$prescriptionId/edit'
+    | '/_authenticated/family_/$memberId/edit'
+    | '/_authenticated/prescriptions_/$prescriptionId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -269,72 +269,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPrescriptionsNewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/family/$memberId/edit': {
-      id: '/_authenticated/family/$memberId/edit'
-      path: '/edit'
+    '/_authenticated/family_/$memberId/edit': {
+      id: '/_authenticated/family_/$memberId/edit'
+      path: '/family/$memberId/edit'
       fullPath: '/family/$memberId/edit'
       preLoaderRoute: typeof AuthenticatedFamilyMemberIdEditRouteImport
-      parentRoute: typeof AuthenticatedFamilyMemberIdRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/prescriptions/$prescriptionId/edit': {
-      id: '/_authenticated/prescriptions/$prescriptionId/edit'
-      path: '/edit'
+    '/_authenticated/prescriptions_/$prescriptionId/edit': {
+      id: '/_authenticated/prescriptions_/$prescriptionId/edit'
+      path: '/prescriptions/$prescriptionId/edit'
       fullPath: '/prescriptions/$prescriptionId/edit'
       preLoaderRoute: typeof AuthenticatedPrescriptionsPrescriptionIdEditRouteImport
-      parentRoute: typeof AuthenticatedPrescriptionsPrescriptionIdRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
-
-interface AuthenticatedFamilyMemberIdRouteChildren {
-  AuthenticatedFamilyMemberIdEditRoute: typeof AuthenticatedFamilyMemberIdEditRoute
-}
-
-const AuthenticatedFamilyMemberIdRouteChildren: AuthenticatedFamilyMemberIdRouteChildren =
-  {
-    AuthenticatedFamilyMemberIdEditRoute: AuthenticatedFamilyMemberIdEditRoute,
-  }
-
-const AuthenticatedFamilyMemberIdRouteWithChildren =
-  AuthenticatedFamilyMemberIdRoute._addFileChildren(
-    AuthenticatedFamilyMemberIdRouteChildren,
-  )
-
-interface AuthenticatedPrescriptionsPrescriptionIdRouteChildren {
-  AuthenticatedPrescriptionsPrescriptionIdEditRoute: typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
-}
-
-const AuthenticatedPrescriptionsPrescriptionIdRouteChildren: AuthenticatedPrescriptionsPrescriptionIdRouteChildren =
-  {
-    AuthenticatedPrescriptionsPrescriptionIdEditRoute:
-      AuthenticatedPrescriptionsPrescriptionIdEditRoute,
-  }
-
-const AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren =
-  AuthenticatedPrescriptionsPrescriptionIdRoute._addFileChildren(
-    AuthenticatedPrescriptionsPrescriptionIdRouteChildren,
-  )
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedSearchRoute: typeof AuthenticatedSearchRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
-  AuthenticatedFamilyMemberIdRoute: typeof AuthenticatedFamilyMemberIdRouteWithChildren
+  AuthenticatedFamilyMemberIdRoute: typeof AuthenticatedFamilyMemberIdRoute
   AuthenticatedFamilyNewRoute: typeof AuthenticatedFamilyNewRoute
-  AuthenticatedPrescriptionsPrescriptionIdRoute: typeof AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren
+  AuthenticatedPrescriptionsPrescriptionIdRoute: typeof AuthenticatedPrescriptionsPrescriptionIdRoute
   AuthenticatedPrescriptionsNewRoute: typeof AuthenticatedPrescriptionsNewRoute
+  AuthenticatedFamilyMemberIdEditRoute: typeof AuthenticatedFamilyMemberIdEditRoute
+  AuthenticatedPrescriptionsPrescriptionIdEditRoute: typeof AuthenticatedPrescriptionsPrescriptionIdEditRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedSearchRoute: AuthenticatedSearchRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
-  AuthenticatedFamilyMemberIdRoute:
-    AuthenticatedFamilyMemberIdRouteWithChildren,
+  AuthenticatedFamilyMemberIdRoute: AuthenticatedFamilyMemberIdRoute,
   AuthenticatedFamilyNewRoute: AuthenticatedFamilyNewRoute,
   AuthenticatedPrescriptionsPrescriptionIdRoute:
-    AuthenticatedPrescriptionsPrescriptionIdRouteWithChildren,
+    AuthenticatedPrescriptionsPrescriptionIdRoute,
   AuthenticatedPrescriptionsNewRoute: AuthenticatedPrescriptionsNewRoute,
+  AuthenticatedFamilyMemberIdEditRoute: AuthenticatedFamilyMemberIdEditRoute,
+  AuthenticatedPrescriptionsPrescriptionIdEditRoute:
+    AuthenticatedPrescriptionsPrescriptionIdEditRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
