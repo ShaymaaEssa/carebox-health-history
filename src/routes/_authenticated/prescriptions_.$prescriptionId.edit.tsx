@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { prescriptionQuery } from "@/lib/queries";
+import { validatePrescriptionDetails, type PrescriptionDetailsErrors } from "@/lib/prescription-details";
 import { useActionError } from "@/lib/use-action-error";
 
 export const Route = createFileRoute("/_authenticated/prescriptions_/$prescriptionId/edit")({
@@ -37,6 +38,11 @@ function EditPrescription() {
   const [doctor, setDoctor] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [notes, setNotes] = useState("");
+  const [weightKg, setWeightKg] = useState("");
+  const [heightCm, setHeightCm] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const [doctorInstructions, setDoctorInstructions] = useState("");
+  const [optionalErrors, setOptionalErrors] = useState<PrescriptionDetailsErrors>({});
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,9 +52,21 @@ function EditPrescription() {
     setDoctor(prescription.data.doctor_name ?? "");
     setSpecialty(prescription.data.specialty ?? "");
     setNotes(prescription.data.notes ?? "");
+    setWeightKg(prescription.data.weight_kg == null ? "" : String(prescription.data.weight_kg));
+    setHeightCm(prescription.data.height_cm == null ? "" : String(prescription.data.height_cm));
+    setSymptoms(prescription.data.symptoms ?? "");
+    setDoctorInstructions(prescription.data.doctor_instructions ?? "");
   }, [prescription.data]);
 
   async function save() {
+    const details = validatePrescriptionDetails({
+      weight_kg: weightKg,
+      height_cm: heightCm,
+      symptoms,
+      doctor_instructions: doctorInstructions,
+    });
+    setOptionalErrors(details.errors);
+    if (!details.success) return;
     setBusy(true);
     setError(null);
     const { error: updateError } = await supabase
@@ -58,6 +76,10 @@ function EditPrescription() {
         doctor_name: doctor.trim() || null,
         specialty: specialty.trim() || null,
         notes: notes.trim() || null,
+        weight_kg: details.data.weight_kg,
+        height_cm: details.data.height_cm,
+        symptoms: details.data.symptoms,
+        doctor_instructions: details.data.doctor_instructions,
       })
       .eq("id", prescriptionId);
     setBusy(false);
@@ -98,6 +120,19 @@ function EditPrescription() {
           setSpecialty={setSpecialty}
           notes={notes}
           setNotes={setNotes}
+          weightKg={weightKg}
+          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors({}); }}
+          heightCm={heightCm}
+          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors({}); }}
+          symptoms={symptoms}
+          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors({}); }}
+          doctorInstructions={doctorInstructions}
+          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors({}); }}
+          optionalErrors={optionalErrors}
+          expandOptional={Boolean(
+            prescription.data?.weight_kg != null || prescription.data?.height_cm != null ||
+            prescription.data?.symptoms || prescription.data?.doctor_instructions,
+          )}
           disabled={busy}
         />
 

@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { uploadAttachment, validateFile } from "@/lib/attachments";
 import { useAuth } from "@/lib/auth";
 import { MAX_ATTACHMENTS } from "@/lib/types";
+import { validatePrescriptionDetails, type PrescriptionDetailsErrors } from "@/lib/prescription-details";
 import { useActionError } from "@/lib/use-action-error";
 import { FileText, Loader2, Plus, X } from "lucide-react";
 
@@ -41,6 +42,11 @@ function NewPrescription() {
   const [doctor, setDoctor] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [notes, setNotes] = useState("");
+  const [weightKg, setWeightKg] = useState("");
+  const [heightCm, setHeightCm] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const [doctorInstructions, setDoctorInstructions] = useState("");
+  const [optionalErrors, setOptionalErrors] = useState<PrescriptionDetailsErrors>({});
   const [files, setFiles] = useState<File[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,6 +76,14 @@ function NewPrescription() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (!user || !memberId) return;
+    const details = validatePrescriptionDetails({
+      weight_kg: weightKg,
+      height_cm: heightCm,
+      symptoms,
+      doctor_instructions: doctorInstructions,
+    });
+    setOptionalErrors(details.errors);
+    if (!details.success) return;
     setBusy(true);
     setError(null);
 
@@ -82,6 +96,10 @@ function NewPrescription() {
         doctor_name: doctor.trim() || null,
         specialty: specialty.trim() || null,
         notes: notes.trim() || null,
+        weight_kg: details.data.weight_kg,
+        height_cm: details.data.height_cm,
+        symptoms: details.data.symptoms,
+        doctor_instructions: details.data.doctor_instructions,
       })
       .select("id")
       .single();
@@ -147,6 +165,15 @@ function NewPrescription() {
           setSpecialty={setSpecialty}
           notes={notes}
           setNotes={setNotes}
+          weightKg={weightKg}
+          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors({}); }}
+          heightCm={heightCm}
+          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors({}); }}
+          symptoms={symptoms}
+          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors({}); }}
+          doctorInstructions={doctorInstructions}
+          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors({}); }}
+          optionalErrors={optionalErrors}
           disabled={busy}
         />
 

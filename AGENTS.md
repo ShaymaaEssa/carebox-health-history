@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+Keep optional prescription-field normalization and validation in shared `src/lib/prescription-details.ts` so create and edit apply identical rules.

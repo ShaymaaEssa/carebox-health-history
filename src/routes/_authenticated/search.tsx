@@ -26,9 +26,9 @@ export const Route = createFileRoute("/_authenticated/search")({
   head: () => ({
     meta: [
       { title: "Search prescriptions — CareBox" },
-      { name: "description", content: "Search prescriptions by doctor, specialty, notes or family member." },
+      { name: "description", content: "Search prescriptions by doctor, specialty, symptoms, instructions, notes or family member." },
       { property: "og:title", content: "Search prescriptions — CareBox" },
-      { property: "og:description", content: "Search prescriptions by doctor, specialty, notes or family member." },
+      { property: "og:description", content: "Search prescriptions by doctor, specialty, symptoms, instructions, notes or family member." },
     ],
   }),
   component: SearchPage,
@@ -62,7 +62,7 @@ function SearchPage() {
       if (clean) {
         const pattern = `%${clean}%`;
         query = query.or(
-          `doctor_name.ilike.${pattern},specialty.ilike.${pattern},notes.ilike.${pattern},family_member_name.ilike.${pattern}`,
+          `doctor_name.ilike.${pattern},specialty.ilike.${pattern},notes.ilike.${pattern},symptoms.ilike.${pattern},doctor_instructions.ilike.${pattern},family_member_name.ilike.${pattern}`,
         );
       }
       if (memberId !== "all") query = query.eq("family_member_id", memberId);
