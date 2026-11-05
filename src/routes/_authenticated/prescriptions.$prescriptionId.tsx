@@ -235,6 +235,20 @@ function PrescriptionDetail() {
               )}
             </div>
           )}
+          {prescription.data && (
+            prescription.data.weight_kg != null ||
+            prescription.data.height_cm != null ||
+            prescription.data.symptoms ||
+            prescription.data.doctor_instructions
+          ) && (
+            <section className="stat-card animate-fade-in space-y-3 p-4 sm:p-5">
+              <h2 className="text-card-title text-foreground">Details</h2>
+              {prescription.data.weight_kg != null && <div><p className="text-eyebrow">Weight</p><p className="text-body mt-0.5 text-foreground">{prescription.data.weight_kg} kg</p></div>}
+              {prescription.data.height_cm != null && <div><p className="text-eyebrow">Height</p><p className="text-body mt-0.5 text-foreground">{prescription.data.height_cm} cm</p></div>}
+              {prescription.data.symptoms && <div><p className="text-eyebrow">Symptoms</p><p className="text-body mt-0.5 whitespace-pre-wrap text-muted-foreground">{prescription.data.symptoms}</p></div>}
+              {prescription.data.doctor_instructions && <div><p className="text-eyebrow">What the doctor said</p><p className="text-body mt-0.5 whitespace-pre-wrap text-muted-foreground">{prescription.data.doctor_instructions}</p></div>}
+            </section>
+          )}
         </div>
 
         <section className="space-y-3">

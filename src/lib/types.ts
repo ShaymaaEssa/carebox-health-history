@@ -17,6 +17,10 @@ export type Prescription = {
   doctor_name: string | null;
   specialty: string | null;
   notes: string | null;
+  weight_kg: number | null;
+  height_cm: number | null;
+  symptoms: string | null;
+  doctor_instructions: string | null;
   created_at: string;
   updated_at: string;
 };
