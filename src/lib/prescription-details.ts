@@ -29,7 +29,12 @@ export const prescriptionDetailsSchema = z.object({
     .transform((value) => value || null),
 });
 
-export type PrescriptionDetailsInput = z.input<typeof prescriptionDetailsSchema>;
+export type PrescriptionDetailsInput = {
+  weight_kg: string;
+  height_cm: string;
+  symptoms: string;
+  doctor_instructions: string;
+};
 export type PrescriptionDetailsErrors = Partial<Record<keyof PrescriptionDetailsInput, string>>;
 
 export function validatePrescriptionDetails(input: PrescriptionDetailsInput) {
