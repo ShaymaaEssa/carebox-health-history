@@ -121,13 +121,13 @@ function EditPrescription() {
           notes={notes}
           setNotes={setNotes}
           weightKg={weightKg}
-          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors({}); }}
+          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors((prev) => ({ ...prev, weight_kg: undefined })); }}
           heightCm={heightCm}
-          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors({}); }}
+          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors((prev) => ({ ...prev, height_cm: undefined })); }}
           symptoms={symptoms}
-          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors({}); }}
+          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors((prev) => ({ ...prev, symptoms: undefined })); }}
           doctorInstructions={doctorInstructions}
-          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors({}); }}
+          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors((prev) => ({ ...prev, doctor_instructions: undefined })); }}
           optionalErrors={optionalErrors}
           expandOptional={Boolean(
             prescription.data?.weight_kg != null || prescription.data?.height_cm != null ||
