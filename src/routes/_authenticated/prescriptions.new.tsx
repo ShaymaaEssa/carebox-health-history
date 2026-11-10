@@ -166,13 +166,13 @@ function NewPrescription() {
           notes={notes}
           setNotes={setNotes}
           weightKg={weightKg}
-          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors((prev) => ({ ...prev, weight_kg: undefined })); }}
+          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.weight_kg; return next; }); }}
           heightCm={heightCm}
-          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors((prev) => ({ ...prev, height_cm: undefined })); }}
+          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.height_cm; return next; }); }}
           symptoms={symptoms}
-          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors((prev) => ({ ...prev, symptoms: undefined })); }}
+          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.symptoms; return next; }); }}
           doctorInstructions={doctorInstructions}
-          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors((prev) => ({ ...prev, doctor_instructions: undefined })); }}
+          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.doctor_instructions; return next; }); }}
           optionalErrors={optionalErrors}
           disabled={busy}
         />
