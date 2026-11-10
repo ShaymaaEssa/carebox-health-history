@@ -121,13 +121,13 @@ function EditPrescription() {
           notes={notes}
           setNotes={setNotes}
           weightKg={weightKg}
-          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors({}); }}
+          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.weight_kg; return next; }); }}
           heightCm={heightCm}
-          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors({}); }}
+          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.height_cm; return next; }); }}
           symptoms={symptoms}
-          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors({}); }}
+          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.symptoms; return next; }); }}
           doctorInstructions={doctorInstructions}
-          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors({}); }}
+          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.doctor_instructions; return next; }); }}
           optionalErrors={optionalErrors}
           expandOptional={Boolean(
             prescription.data?.weight_kg != null || prescription.data?.height_cm != null ||

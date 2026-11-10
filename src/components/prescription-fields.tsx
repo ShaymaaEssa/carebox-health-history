@@ -123,8 +123,6 @@ export function PrescriptionFields(props: {
                 id="weight-kg"
                 type="number"
                 inputMode="decimal"
-                min="1"
-                max="500"
                 step="any"
                 className="h-12 w-full"
                 value={weightKg}
@@ -144,8 +142,6 @@ export function PrescriptionFields(props: {
                 id="height-cm"
                 type="number"
                 inputMode="decimal"
-                min="1"
-                max="300"
                 step="any"
                 className="h-12 w-full"
                 value={heightCm}
