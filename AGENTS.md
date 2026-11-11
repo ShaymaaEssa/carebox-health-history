@@ -11,6 +11,8 @@
 
 Keep optional prescription-field normalization and validation in shared `src/lib/prescription-details.ts` so create and edit apply identical rules.
 
+Expose password-recovery auth events through the shared `AuthProvider` context instead of adding route-level Supabase listeners, avoiding competing subscriptions.
+
 
 ## CareBox project rules (read before changing anything)
 
