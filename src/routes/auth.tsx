@@ -56,12 +56,12 @@ function AuthPage() {
   );
 
   useEffect(() => {
-    if (reason !== "expired") {
+    if (reason !== "expired" && requestedMode !== "forgot") {
       supabase.auth.getSession().then(({ data }) => {
         if (data.session) navigate({ to: "/dashboard", replace: true });
       });
     }
-  }, [navigate, reason]);
+  }, [navigate, reason, requestedMode]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
