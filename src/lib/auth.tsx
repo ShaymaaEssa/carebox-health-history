@@ -8,10 +8,11 @@ type AuthState = {
   session: Session | null;
   loading: boolean;
   passwordRecovery: boolean;
-  clearPasswordRecovery: () => void;
 };
 
-const AuthContext = createContext<AuthState>({
+type AuthContextValue = AuthState & { clearPasswordRecovery: () => void };
+
+const AuthContext = createContext<AuthContextValue>({
   user: null,
   session: null,
   loading: true,
@@ -25,7 +26,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     session: null,
     loading: true,
     passwordRecovery: false,
-    clearPasswordRecovery: () => {},
   });
   const clearPasswordRecovery = useCallback(() => {
     setState((current) => ({ ...current, passwordRecovery: false }));
