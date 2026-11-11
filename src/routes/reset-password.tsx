@@ -45,6 +45,7 @@ function ResetPassword() {
       queryParams.has("error_code");
     const isRecoveryLink =
       hashParams.get("type") === "recovery" || queryParams.get("type") === "recovery";
+    const isRecoveryCode = queryParams.has("code");
 
     if (authError) {
       setStatus("invalid");
@@ -54,7 +55,7 @@ function ResetPassword() {
       setStatus("ready");
       return;
     }
-    if (!isRecoveryLink) {
+    if (!isRecoveryLink && !isRecoveryCode) {
       setStatus("invalid");
       return;
     }
