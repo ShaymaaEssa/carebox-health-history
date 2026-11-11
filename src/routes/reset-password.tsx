@@ -28,7 +28,7 @@ export const Route = createFileRoute("/reset-password")({
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const { passwordRecovery } = useAuth();
+  const { passwordRecovery, clearPasswordRecovery } = useAuth();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [busy, setBusy] = useState(false);
@@ -99,6 +99,7 @@ function ResetPassword() {
         }
         throw error;
       }
+      clearPasswordRecovery();
       toast.success("Password updated");
       navigate({ to: "/dashboard", replace: true });
     } catch (error) {
@@ -114,6 +115,7 @@ function ResetPassword() {
   }
 
   function requestNewLink() {
+    clearPasswordRecovery();
     navigate({ to: "/auth", search: { reason: "", mode: "forgot" } });
   }
 
