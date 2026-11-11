@@ -39,8 +39,12 @@ function ResetPassword() {
     const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
     const queryParams = new URLSearchParams(window.location.search);
     const authError =
-      hashParams.has("error") || queryParams.has("error") || hashParams.has("error_code");
-    const isRecoveryLink = hashParams.get("type") === "recovery";
+      hashParams.has("error") ||
+      queryParams.has("error") ||
+      hashParams.has("error_code") ||
+      queryParams.has("error_code");
+    const isRecoveryLink =
+      hashParams.get("type") === "recovery" || queryParams.get("type") === "recovery";
 
     if (authError) {
       setStatus("invalid");
@@ -55,8 +59,18 @@ function ResetPassword() {
       return;
     }
 
+    let active = true;
     const timeout = window.setTimeout(() => setStatus("invalid"), 5000);
-    return () => window.clearTimeout(timeout);
+    void supabase.auth.getSession().then(({ data }) => {
+      if (active && data.session) {
+        window.clearTimeout(timeout);
+        setStatus("ready");
+      }
+    });
+    return () => {
+      active = false;
+      window.clearTimeout(timeout);
+    };
   }, [passwordRecovery]);
 
   async function handleSubmit(event: React.FormEvent) {
