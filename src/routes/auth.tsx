@@ -12,7 +12,10 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { friendlyMessage } from "@/lib/errors";
 
-const searchSchema = z.object({ reason: fallback(z.string(), "").default("") });
+const searchSchema = z.object({
+  reason: fallback(z.string(), "").default(""),
+  mode: z.literal("forgot").optional(),
+});
 
 export const Route = createFileRoute("/auth")({
   validateSearch: zodValidator(searchSchema),
@@ -40,8 +43,8 @@ function friendlyAuthMessage(error: unknown) {
 
 function AuthPage() {
   const navigate = useNavigate();
-  const { reason } = Route.useSearch();
-  const [mode, setMode] = useState<Mode>("signin");
+  const { reason, mode: requestedMode } = Route.useSearch();
+  const [mode, setMode] = useState<Mode>(requestedMode === "forgot" ? "forgot" : "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -67,8 +70,10 @@ function AuthPage() {
     setBusy(true);
     try {
       if (mode === "forgot") {
+        const origin = typeof window === "undefined" ? null : window.location.origin;
+        if (!origin) throw new Error("Please try again in your browser.");
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}/reset-password`,
+          redirectTo: `${origin}/reset-password`,
         });
         if (error) throw error;
         setMessage("Check your inbox for a password reset link.");

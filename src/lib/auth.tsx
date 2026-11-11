@@ -3,19 +3,39 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 import { supabase } from "@/integrations/supabase/client";
 
-type AuthState = { user: User | null; session: Session | null; loading: boolean };
+type AuthState = {
+  user: User | null;
+  session: Session | null;
+  loading: boolean;
+  passwordRecovery: boolean;
+};
 
-const AuthContext = createContext<AuthState>({ user: null, session: null, loading: true });
+const AuthContext = createContext<AuthState>({
+  user: null,
+  session: null,
+  loading: true,
+  passwordRecovery: false,
+});
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthState>({ user: null, session: null, loading: true });
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      setState({ user: session?.user ?? null, session, loading: false });
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      setState((current) => ({
+        user: session?.user ?? null,
+        session,
+        loading: false,
+        passwordRecovery: event === "PASSWORD_RECOVERY" || current.passwordRecovery,
+      }));
     });
     supabase.auth.getSession().then(({ data }) => {
-      setState({ user: data.session?.user ?? null, session: data.session, loading: false });
+      setState((current) => ({
+        user: data.session?.user ?? null,
+        session: data.session,
+        loading: false,
+        passwordRecovery: current.passwordRecovery,
+      }));
     });
     return () => sub.subscription.unsubscribe();
   }, []);
