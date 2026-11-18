@@ -13,3 +13,9 @@
 - [x] Persist and read the four existing prescription columns without database changes
 - [x] Show populated details on prescription pages and include text fields in search
 - [x] Add tests for required measurement boundaries and empty-value normalization
+
+# Home dashboard reference refresh
+
+- [x] Adapt the mobile family shelf and web family grid to the Stitch references
+- [x] Refine dashboard greeting, summary counts, privacy note, and recent prescription section
+- [ ] Verify dashboard layout at phone and desktop widths
