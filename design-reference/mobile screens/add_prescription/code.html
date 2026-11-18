@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-fixed-dim": "#bec9c5", "inverse-primary": "#8ed4c1", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#3b0900", "on-secondary-fixed-variant": "#3f4946", "surface-bright": "#f3fbf8", "on-secondary-fixed": "#141d1b", "on-tertiary-container": "#ffb5a1", "on-primary": "#ffffff", "surface-tint": "#1f6a5a", "on-surface": "#151d1b", "on-primary-fixed-variant": "#005143", "on-surface-variant": "#3f4945", "on-primary-container": "#8ed5c2", "surface-container-high": "#e1eae6", "secondary-container": "#dae5e1", "on-secondary-container": "#5c6764", "tertiary-container": "#8b3a22", "primary-fixed-dim": "#8ed4c1", "error": "#ba1a1a", "surface-dim": "#d3dcd8", "primary-container": "#0d5e4f", "on-primary-fixed": "#00201a", "surface-container-low": "#edf6f2", "on-error": "#ffffff", "tertiary-fixed-dim": "#ffb5a0", "inverse-on-surface": "#eaf3ef", "secondary-fixed": "#dae5e1", "on-background": "#151d1b", "error-container": "#ffdad6", "surface-container": "#e7f0ec", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#7b2e17", "tertiary": "#6d240e", "on-secondary": "#ffffff", "primary": "#004539", "background": "#f3fbf8", "surface": "#f3fbf8", "primary-fixed": "#a9f1dd", "surface-variant": "#dce4e1", "surface-container-lowest": "#ffffff", "secondary": "#56615e", "outline-variant": "#bec9c4", "outline": "#6f7975", "surface-container-highest": "#dce4e1", "inverse-surface": "#2a3230", "tertiary-fixed": "#ffdbd1" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "margin": "2rem", "space-xl": "2.5rem", "space-md": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "1rem", "margin-sm": "1.25rem", "space-lg": "1.5rem" }, fontFamily: { "headline-lg": ["Newsreader"], "label-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Newsreader"], "display-lg": ["Newsreader"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Newsreader"], "headline-sm": ["Newsreader"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"] }, fontSize: { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-2 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container transition-colors" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><img alt="CareBox Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UOwsuemdQ_osZPruHwMjUVILvh0xo5R7WOTRRSw7VQt8MxoGsksPDX1t2Dr1LVlttlZXVIteRthOUB5LGZ_BMcSA5OtHdHu0_N1jmspW1pngUWnKnFYhUxbyHyipHeBltXUAjhGoXg2e6BNeLoupIQln53WTo281zeup6iuQZWucTbVLqXx6NK0b2F5EPgXPh7iZqh8FGzAJk9Fpg6F8dPg3V2eNn9Xb9mwKDaYner"/><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-medium">Add Prescription</h1></div><div class="flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCQa2Tt7KuoR11w1FQwIsgMAOzamNp2a2pP7PqVcl0YvULIrFLkyG7uINCdJIDs1l93ie2RNUBY5auzSUOig6lGbP40I4KSd4jakSgBKgyNUYXzMyn9NSWvUBKKdf5WdcJB_1RpIhrs8Oqhwu6WV8R7s4b6u7xmUkwD2I3Vy0DcF1eKpwAr9KCt8bkDEPsrHZnt0fV1Z747I_2t00SioxmXKPsArVgfsxbbRJ_ynU"/></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-safe"><div class="flex flex-col w-full px-margin-sm pb-space-xl">
+<!-- Warm Introduction Header Card -->
+<div class="relative overflow-hidden bg-surface-container-low rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-primary mb-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">CareBox Archival Vault</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Archive Prescription</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Digitize clinical documents and dosage instructions into your family vault.</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+</div>
+</div>
+<!-- Step 1: Patient Selector -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+        Patient Profile
+      </label>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Active: Mona</span>
+</div>
+<div class="grid grid-cols-4 gap-2" id="patient-picker">
+<!-- Layla -->
+<button class="patient-pill group flex flex-col items-center p-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-center" type="button">
+<div class="relative w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed mb-1.5 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of a young smiling teenage girl with dark curly hair and gentle warm lighting in an organic natural interior studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ_ApjLBlrNzI5cZZaz3TTmgez_XAo9LsfjBTJuTdn_Msldqr-yBWOYycoO5F4pnHtFS1gcRExBGgRlq4-qgXXiPFio0QDaUbclC9uX2N9LVkEr59EW7sgd8uT2v6SCImOTuSGcUVd7-ooKgFAvrHuMcDAKqYelg2xWb3nNzmoNfCJCwb6Lq6hzpLf3eENu3cEmkUkPBMcD-4vk-S0lCYLgezgpeWxd3R6sWs_RQ0"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate w-full">Layla</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Daughter</span>
+</button>
+<!-- Omar -->
+<button class="patient-pill group flex flex-col items-center p-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-center" type="button">
+<div class="relative w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed mb-1.5 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of a friendly middle-aged man with short salt-and-pepper hair wearing a casual soft linen shirt in cozy sunlit room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2EajjqGgR_uPU6eDbRHZn8Y-1xpvcPy_VoTA2GkRAqYe_cu8QDdQvyoXtNhv5dwVZNYcoA2d7cYEeTszV2eu-4N39Nwc6bi63TK-SfMeDsmwtnISSV5m2o8ZcwLPYiiLpxzm5ZD1ycp4LHKOPrfYtp2V3Eg6PpsxIqTXgRnZeAvNTqI2mNrIx8GVvvfpMIcquHixaorx2l8x_2eGq_rF7rx2XTCIPr8-VA6HsyeI"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate w-full">Omar</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Father</span>
+</button>
+<!-- Mona (Selected) -->
+<button class="patient-pill flex flex-col items-center p-2 rounded-xl bg-primary text-on-primary shadow-md transition-all text-center relative" type="button">
+<div class="relative w-12 h-12 rounded-full overflow-hidden bg-primary-fixed mb-1.5 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Warm close-up portrait of an adorable 6-year-old child Mona with a soft curious smile wearing a comfortable green knit sweater in bright morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChsxph5y9j3JJFDyT09ol7f7rHy3TlPLRre98cBBQ7joGipEsWquylwuaRuby9EEB7eFC0M9QE70b9PTMlThraRAtdMmc_UE8b1JcqzM_1V8eb36zUWxd1u4OQL1vDza84JmWDpHWwrIm7HaCFsZPdcVbnC2SaatnQMXfLHNr2O2AZuaEDh7KsD8LZlZVTBUyjtEnoON3APes5JyAsfHkAvOTMBxhb6nqmvtLpALk"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<div class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-xs font-bold" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-primary font-semibold truncate w-full">Mona</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim text-[10px]">Child</span>
+</button>
+<!-- Youssef -->
+<button class="patient-pill group flex flex-col items-center p-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-center" type="button">
+<div class="relative w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed mb-1.5 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Portrait photograph of an elderly kind grandfather Youssef with warm kind eyes and neat silver hair in a library study room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjWRN-qzhL0C3RihG8wuNvBnzR-jAM5QaC4bKdZ05h1EXl93ENSB7II7Q6qGgAal6N7BllshxMIZH_dx7A4vypiJPIaiR3sSNKqIclZjJlfQUPuoueFvZ6qgIS_w_PBRyQsI3HU_K2hTI7EsEpn1NdbM9lA7gNmCpPv7xXhFaMFg1wIKShXM47B2Ta1vv84a-Vi-lBmSkx9mpE2ceDZAG20VpgoP9imj0VvcoWrjU"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate w-full">Youssef</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Grandpa</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Attachment Grid (Prominent) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base">document_scanner</span>
+        Prescription Photos or Documents
+      </label>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-medium">2 of 4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Snap handwritten scripts, pharmacy slips, or bottle labels.</p>
+<!-- 4-Slot Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Slot 1: Filled with Dr. Jenkins prescription slip -->
+<div class="relative h-44 rounded-xl overflow-hidden bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Crisp high-resolution top-down macro photograph of an official pediatric medical clinic prescription slip written by Dr. Sarah Jenkins with pen handwriting and medical clinic header watermark on warm cream paper stock" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9_jsrx2LyakVMSz_ChEkGfAad3pplNww48_RWphS3naHVBXiw_L5owslG9IsNPAw4bs7q9ysqm6wcly7ts3tlevIs9u6HSfgaIjlrizQ2wd68wXqW1FEWKZutddozZeODM977L8CW5oJGmN3zbkyJJMV_2P7KREvhek6I0BFM9WMLOyb1xLWfKB2cATdB_nz6WWQHKS9V6K2WPsGiQ4rArIyxrtP3BXKQj2CNYIo"/>
+<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-white font-medium drop-shadow-sm">Script Slip</span>
+<span class="font-body-sm text-[11px] text-white/80">Dr. Jenkins</span>
+</div>
+<span class="material-symbols-outlined text-white/90 text-sm">visibility</span>
+</div>
+<button aria-label="Remove document" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center shadow-md active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<!-- Slot 2: Filled with pharmacy receipt / bottle label photo -->
+<div class="relative h-44 rounded-xl overflow-hidden bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Macro clear photograph of an amber liquid prescription amoxicillin bottle with clean white printed pharmacy prescription warning instructions and dosage label resting on clean wooden kitchen counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwWDsYQJYRm8yg8ktlYThajJBorz5CkO4qAYUwn5lS12adSAU2gV2qqfPE0eES7uf-aebDLztEgtzIV8jzub2MI45in-GPSzrK7yZwg3ioOKaUPGhJcPyPunEDShIp5hPygM0j3Lb8agicH748cyRrwk9TRLTsm6muCYhCvBNTNb2hwfuoSrayqxlECPaMcLmWMPKuW8LZVe-uUWqbqu8UgNaHiNBDlyqfb9i1e_U"/>
+<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 flex items-end justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-white font-medium drop-shadow-sm">Bottle Label</span>
+<span class="font-body-sm text-[11px] text-white/80">CVS Pharmacy</span>
+</div>
+<span class="material-symbols-outlined text-white/90 text-sm">visibility</span>
+</div>
+<button aria-label="Remove document" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center shadow-md active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<!-- Slot 3: Empty slot with camera icon & Add Page 3 -->
+<button class="h-44 rounded-xl bg-surface-container-low hover:bg-surface-container flex flex-col items-center justify-center p-3 text-center transition-all group active:scale-[0.98]" type="button">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-105 transition-transform shadow-sm mb-2">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-semibold">Add Page 3</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Backside or slip</span>
+</button>
+<!-- Slot 4: Empty slot with camera icon & Add Page 4 -->
+<button class="h-44 rounded-xl bg-surface-container-low hover:bg-surface-container flex flex-col items-center justify-center p-3 text-center transition-all group active:scale-[0.98]" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-secondary group-hover:scale-105 transition-transform mb-2">
+<span class="material-symbols-outlined text-xl">add_photo_alternate</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-medium">Add Page 4</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Insurance / notes</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Essential Form Fields -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-md space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-base">clinical_notes</span>
+<h3 class="font-label-lg text-label-lg font-semibold text-on-surface">Clinical Details</h3>
+</div>
+<!-- Visit Date & Specialty (Two Column Pair) -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Visit Date -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1.5" for="visit-date">Visit Date</label>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-3 pl-9 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="visit-date" type="text" value="Nov 14, 2024"/>
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-lg pointer-events-none">calendar_today</span>
+</div>
+</div>
+<!-- Specialty -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1.5" for="specialty-select">Specialty</label>
+<div class="relative flex items-center">
+<select class="w-full h-12 px-3 pl-9 pr-7 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="specialty-select">
+<option selected="" value="pediatrics">Pediatrics</option>
+<option value="general">General Practice</option>
+<option value="ent">ENT / Otolaryngology</option>
+<option value="allergy">Allergy &amp; Immunology</option>
+</select>
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-lg pointer-events-none">stethoscope</span>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-lg pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Doctor Name -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1.5" for="doctor-name">Prescribing Physician</label>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-3 pl-9 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="doctor-name" type="text" value="Dr. Sarah Jenkins"/>
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-lg pointer-events-none">person</span>
+</div>
+</div>
+<!-- Medication Summary & Instructions -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium" for="medication-notes">Notes &amp; Medication Summary</label>
+<span class="font-label-sm text-[11px] text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">auto_awesome</span>
+          OCR Detected
+        </span>
+</div>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm resize-none" id="medication-notes" rows="3">Amoxicillin 250mg/5ml for 7 days. Give with food. Take 5ml every 8 hours.</textarea>
+</div>
+</div>
+<!-- Step 4: Collapsible Accordion (More Details) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm mb-space-lg overflow-hidden">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container-low transition-colors" id="accordion-toggle" type="button">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">tune</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">More details (optional)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Weight, height, symptoms, what the doctor said</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transform transition-transform duration-200" id="accordion-icon">expand_more</span>
+</button>
+<!-- Expandable Content Panel -->
+<div class="hidden px-space-md pb-space-md space-y-space-md" id="accordion-panel">
+<!-- Child Physical Metrics -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1" for="child-weight">Child Weight</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="child-weight" type="text" value="22.5 kg"/>
+<span class="material-symbols-outlined absolute right-2.5 text-on-surface-variant text-base pointer-events-none">scale</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1" for="child-height">Height</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="child-height" type="text" value="122 cm"/>
+<span class="material-symbols-outlined absolute right-2.5 text-on-surface-variant text-base pointer-events-none">height</span>
+</div>
+</div>
+</div>
+<!-- Key Symptoms -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1" for="key-symptoms">Key Symptoms</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="key-symptoms" type="text" value="Cough, mild fever"/>
+<span class="material-symbols-outlined absolute right-2.5 text-on-surface-variant text-base pointer-events-none">coronavirus</span>
+</div>
+</div>
+<!-- Doctor's Verbal Instructions -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-medium mb-1" for="verbal-instructions">Doctor's Verbal Advice</label>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm resize-none" id="verbal-instructions" placeholder="e.g. Discontinue if rash appears, keep refrigerated after reconstitution" rows="2">Keep liquid refrigerated. Shake well before measuring. Follow up in 5 days if cough persists.</textarea>
+</div>
+<!-- Follow-up Flag -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">event_repeat</span>
+<span class="font-label-md text-label-md text-on-surface">Schedule 7-day Refill Reminder</span>
+</div>
+<div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer flex items-center p-0.5 justify-end">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 5: Primary Action Save Button -->
+<div class="sticky bottom-4 z-20 flex flex-col items-center gap-2">
+<button class="w-full h-14 rounded-2xl bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-xl hover:bg-primary-container active:scale-[0.99] transition-all" id="save-btn" type="button">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Save to Mona's Vault</span>
+</button>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-sm text-[11px]">256-bit encrypted health record • HIPAA &amp; GDPR compliant</span>
+</div>
+</div>
+</div>
+<script>
+  // Simple vanilla toggle for the optional details accordion
+  const accordionToggle = document.getElementById('accordion-toggle');
+  const accordionPanel = document.getElementById('accordion-panel');
+  const accordionIcon = document.getElementById('accordion-icon');
+
+  if (accordionToggle && accordionPanel && accordionIcon) {
+    accordionToggle.addEventListener('click', () => {
+      const isHidden = accordionPanel.classList.contains('hidden');
+      if (isHidden) {
+        accordionPanel.classList.remove('hidden');
+        accordionIcon.style.transform = 'rotate(180deg)';
+      } else {
+        accordionPanel.classList.add('hidden');
+        accordionIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+
+  // Interactive patient picker simulation
+  const patientButtons = document.querySelectorAll('.patient-pill');
+  patientButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      patientButtons.forEach(b => {
+        b.className = 'patient-pill group flex flex-col items-center p-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-center';
+        const span = b.querySelector('.font-label-sm');
+        if (span) span.className = 'font-label-sm text-label-sm text-on-surface font-medium truncate w-full';
+      });
+      btn.className = 'patient-pill flex flex-col items-center p-2 rounded-xl bg-primary text-on-primary shadow-md transition-all text-center relative';
+      const label = btn.querySelector('.font-label-sm');
+      if (label) label.className = 'font-label-sm text-label-sm text-on-primary font-semibold truncate w-full';
+    });
+  });
+</script></main></body></html>

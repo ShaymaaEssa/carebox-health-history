@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-fixed-dim": "#bec9c5", "inverse-primary": "#8ed4c1", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#3b0900", "on-secondary-fixed-variant": "#3f4946", "surface-bright": "#f3fbf8", "on-secondary-fixed": "#141d1b", "on-tertiary-container": "#ffb5a1", "on-primary": "#ffffff", "surface-tint": "#1f6a5a", "on-surface": "#151d1b", "on-primary-fixed-variant": "#005143", "on-surface-variant": "#3f4945", "on-primary-container": "#8ed5c2", "surface-container-high": "#e1eae6", "secondary-container": "#dae5e1", "on-secondary-container": "#5c6764", "tertiary-container": "#8b3a22", "primary-fixed-dim": "#8ed4c1", "error": "#ba1a1a", "surface-dim": "#d3dcd8", "primary-container": "#0d5e4f", "on-primary-fixed": "#00201a", "surface-container-low": "#edf6f2", "on-error": "#ffffff", "tertiary-fixed-dim": "#ffb5a0", "inverse-on-surface": "#eaf3ef", "secondary-fixed": "#dae5e1", "on-background": "#151d1b", "error-container": "#ffdad6", "surface-container": "#e7f0ec", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#7b2e17", "tertiary": "#6d240e", "on-secondary": "#ffffff", "primary": "#004539", "background": "#f3fbf8", "surface": "#f3fbf8", "primary-fixed": "#a9f1dd", "surface-variant": "#dce4e1", "surface-container-lowest": "#ffffff", "secondary": "#56615e", "outline-variant": "#bec9c4", "outline": "#6f7975", "surface-container-highest": "#dce4e1", "inverse-surface": "#2a3230", "tertiary-fixed": "#ffdbd1" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "margin": "2rem", "space-xl": "2.5rem", "space-md": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "1rem", "margin-sm": "1.25rem", "space-lg": "1.5rem" }, fontFamily: { "headline-lg": ["Newsreader"], "label-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Newsreader"], "display-lg": ["Newsreader"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Newsreader"], "headline-sm": ["Newsreader"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"] }, fontSize: { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary/10"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="CareBox Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UOwsuemdQ_osZPruHwMjUVILvh0xo5R7WOTRRSw7VQt8MxoGsksPDX1t2Dr1LVlttlZXVIteRthOUB5LGZ_BMcSA5OtHdHu0_N1jmspW1pngUWnKnFYhUxbyHyipHeBltXUAjhGoXg2e6BNeLoupIQln53WTo281zeup6iuQZWucTbVLqXx6NK0b2F5EPgXPh7iZqh8FGzAJk9Fpg6F8dPg3V2eNn9Xb9mwKDaYner"/><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-medium">CareBox</span></div><div class="flex items-center gap-space-sm"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span></button><a class="flex items-center justify-center p-0.5 rounded-full hover:opacity-90 transition-opacity" data-path="family-member-profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCQa2Tt7KuoR11w1FQwIsgMAOzamNp2a2pP7PqVcl0YvULIrFLkyG7uINCdJIDs1l93ie2RNUBY5auzSUOig6lGbP40I4KSd4jakSgBKgyNUYXzMyn9NSWvUBKKdf5WdcJB_1RpIhrs8Oqhwu6WV8R7s4b6u7xmUkwD2I3Vy0DcF1eKpwAr9KCt8bkDEPsrHZnt0fV1Z747I_2t00SioxmXKPsArVgfsxbbRJ_ynU"/></a></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-28"><div class="flex flex-col w-full px-margin-sm space-y-space-md">
+<!-- Family Member Profile Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-36 h-36 bg-primary-fixed/30 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative flex flex-col items-center text-center">
+<!-- Avatar with Gentle Ambient Layer -->
+<div class="relative mb-space-sm">
+<div class="w-24 h-24 rounded-full p-1 bg-surface-container-high shadow-[0_8px_20px_rgba(13,94,79,0.08)] flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="Warm storybook portrait illustration of a cheerful 7-year-old girl with dark curly hair and bright eyes against a soft mint and lavender watercolor backdrop, editorial and reassuring warmth, tactile paper texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPa9MalYMIYUw_zqu_78IkBaTQTYteUIW4bPHE888rCqmKvXV91SQDJh0_N9cP0czltXB6aW5GB4FQbeB4MshfVrhtyjybyPmH5L9-4BkJVgI41-sLE4M3JRBST9dlpc3jaQbykNHMrFtv86kuXGkRqxv1Deo2N6vX0bGFV9c4ffTtGSbfiVsXt3XPZbYu9n3tLTQHbS2os81Uxgk40om4-XmgaGBTdJLtUnxMJYI"/>
+</div>
+<div class="absolute bottom-0 right-1 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+<!-- Identity & Tags -->
+<h1 class="font-headline-md text-headline-md text-on-surface font-medium">Mona</h1>
+<p class="font-label-md text-label-md text-secondary mt-0.5">Daughter • 7 yrs</p>
+<div class="flex flex-wrap items-center justify-center gap-space-xs mt-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">water_drop</span>
+          Type O+
+        </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">warning</span>
+          Penicillin Allergy
+        </span>
+</div>
+<!-- Quick Metrics Summary Bar -->
+<div class="grid grid-cols-3 w-full mt-space-md pt-space-md bg-surface-container-low rounded-lg p-space-sm text-center">
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">12</span>
+<span class="font-label-sm text-label-sm text-secondary">Prescriptions</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">4</span>
+<span class="font-label-sm text-label-sm text-secondary">Doctors</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Nov 14</span>
+<span class="font-label-sm text-label-sm text-secondary">Last Visit</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Pills -->
+<section class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5" id="timelineFilters">
+<button class="filter-pill active-pill px-4 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm shrink-0 transition-all" data-category="all">
+      All Records
+    </button>
+<button class="filter-pill px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm shrink-0 transition-all hover:bg-surface-container" data-category="pediatrics">
+      Pediatrics
+    </button>
+<button class="filter-pill px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm shrink-0 transition-all hover:bg-surface-container" data-category="dental">
+      Dental
+    </button>
+<button class="filter-pill px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm shrink-0 transition-all hover:bg-surface-container" data-category="vaccines">
+      Vaccines
+    </button>
+</section>
+<!-- Timeline Section -->
+<section class="flex flex-col relative pb-4">
+<!-- Month Marker: November 2024 -->
+<div class="flex items-center gap-space-sm my-space-sm" data-group="nov-2024">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<span class="font-headline-sm text-headline-sm text-primary font-medium tracking-tight">November 2024</span>
+</div>
+<!-- Timeline Item: Nov 14 (Pediatrics) -->
+<div class="timeline-entry relative pl-6 pb-space-lg" data-category="pediatrics">
+<div class="absolute left-[4px] top-3 bottom-0 w-[2px] bg-secondary-container"></div>
+<div class="absolute left-0 top-3 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-bright"></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md cursor-pointer timeline-card" onclick="toggleDetails(this)">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary">Nov 14, 2024</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Pediatrics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Seasonal Bronchitis</h3>
+<p class="font-body-sm text-body-sm text-secondary">Dr. Sarah Jenkins • Oak Valley Pediatrics</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base expand-icon">expand_more</span>
+</button>
+</div>
+<!-- Prescribed Rx Badge -->
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">medication</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface truncate">Amoxicillin Suspension (250mg/5mL)</p>
+<p class="font-label-sm text-label-sm text-secondary">5 mL twice daily • 7 days</p>
+</div>
+</div>
+<!-- Document Preview Thumbnail -->
+<div class="mt-space-sm flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="High resolution scan preview of a printed prescription document with official medical header, dosage instructions, and blue clinical pharmacy stamp on textured parchment paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwXrE6mNRxuUC8sBbyIlJXwllhIgBys2e3wJzqTIBpcDCx9EoWH3zIehDpyIHvfYzYaTmhSaKHMzfAgoLgrrULfWiV46FETI3wOd_Zd36GDjtbuG4FofAonV3dODNKOabG9Yw2yG5DQPVXUUpH270XAnaWEQpaiZJNYpifeggKTPv0wvhHfh8gHwooslUt4RQHTzklKJYMvaQHztWHGemMZrVEVHHQ2SflNtfei4k"/>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-sm">attachment</span> Scanned Rx &amp; Label
+            </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic truncate mt-0.5">
+              “Re-check in 10 days if wheezing continues.”
+            </p>
+</div>
+</div>
+<!-- Hidden Detail View -->
+<div class="details-content hidden mt-space-sm pt-space-sm bg-surface-bright rounded-lg p-space-sm text-on-surface-variant">
+<p class="font-label-sm text-label-sm font-semibold text-primary mb-1">Doctor's Clinical Notes:</p>
+<p class="font-body-sm text-body-sm leading-relaxed">
+            Mild expiratory wheeze heard bilaterally. Keep hydrated, cool-mist humidifier overnight. Monitored for penicillin sensitivity reaction; alternative prescribed. Return immediately if stridor appears.
+          </p>
+</div>
+</div>
+</div>
+<!-- Month Marker: August 2024 -->
+<div class="flex items-center gap-space-sm my-space-sm" data-group="aug-2024">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<span class="font-headline-sm text-headline-sm text-primary font-medium tracking-tight">August 2024</span>
+</div>
+<!-- Timeline Item: Aug 22 (Dental) -->
+<div class="timeline-entry relative pl-6 pb-space-lg" data-category="dental">
+<div class="absolute left-[4px] top-3 bottom-0 w-[2px] bg-secondary-container"></div>
+<div class="absolute left-0 top-3 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-surface-bright"></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md cursor-pointer timeline-card" onclick="toggleDetails(this)">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary">Aug 22, 2024</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Dental</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Routine 6mo Cleaning</h3>
+<p class="font-body-sm text-body-sm text-secondary">Dr. Maya Lin • Sunny Smiles Pediatric Dentistry</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base expand-icon">expand_more</span>
+</button>
+</div>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">dentistry</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface truncate">Fluoride Varnish Rinse</p>
+<p class="font-label-sm text-label-sm text-secondary">Topical treatment • Next visit in 6 months</p>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Paper appointment summary slip with cute child dental clinic graphic logo, clean teeth assessment checkmarks, and handwritten pediatric dental care instructions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRyjVPcVqKp3IFZLbtu-xcbL17R4_JMJabMvzagn25Te1hjJWnXtuGmY4UsutzohrgTZEG5D_cI2XgbWkzg3m_6Ah6QJIzWGoHH5N7cRg25Yp-uzNAO4XsLPOiQ-OWWzXVpRKmKFn9DhYtN4cHRfkag_nfCVqfzZ8Nk-AJssgNWc7vA4X3hpVs3vLSHoviTvLnzpHhe65IdzcYwWyfOLl7FKOFvxWBZipE89W4RyQ"/>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-sm">receipt_long</span> Dental Visit Record Slip
+            </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic truncate mt-0.5">
+              “No cavities found. Encouraged morning flossing routine.”
+            </p>
+</div>
+</div>
+<div class="details-content hidden mt-space-sm pt-space-sm bg-surface-bright rounded-lg p-space-sm text-on-surface-variant">
+<p class="font-label-sm text-label-sm font-semibold text-primary mb-1">Hygienist Summary:</p>
+<p class="font-body-sm text-body-sm leading-relaxed">
+            Plaque index low. Primary molars showing excellent enamel calcification. Fluoride foam treatment completed without distress. Patient received brave certificate and sticker.
+          </p>
+</div>
+</div>
+</div>
+<!-- Month Marker: April 2024 -->
+<div class="flex items-center gap-space-sm my-space-sm" data-group="apr-2024">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<span class="font-headline-sm text-headline-sm text-primary font-medium tracking-tight">April 2024</span>
+</div>
+<!-- Timeline Item: Apr 05 (Vaccines) -->
+<div class="timeline-entry relative pl-6 pb-space-lg" data-category="vaccines">
+<div class="absolute left-[4px] top-3 bottom-0 w-[2px] bg-secondary-container"></div>
+<div class="absolute left-0 top-3 w-2.5 h-2.5 rounded-full bg-primary-container ring-4 ring-surface-bright"></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md cursor-pointer timeline-card" onclick="toggleDetails(this)">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary">Apr 05, 2024</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Vaccines</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Annual Checkup &amp; Booster</h3>
+<p class="font-body-sm text-body-sm text-secondary">Dr. Sarah Jenkins • Oak Valley Pediatrics</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base expand-icon">expand_more</span>
+</button>
+</div>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">vaccines</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface truncate">MMR &amp; Varicella Booster</p>
+<p class="font-label-sm text-label-sm text-secondary">Lot #V4892B • Left Deltoid</p>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="Official immunization record document card with yellow cardstock texture, filled vaccine timestamps, official medical seal, and physician signature in dark ink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBLMjE4pIbOv6N766ZJlfR2QDXCXIwh0S4903iHru5aK7ZuD3w7l1UGmAOkheEdAS0k5YWCaTBGwgTK5ou5AxHTZx3WksRQfqUb77quKcLyekW67ZnlqQoa9sqSFsUitOnwUq7HUCYUFoXoH8ydYeJThpcx7fKnEoPU_5-594vKaoLCl3sKeK9fA4fY9iVoPhJrHNN_aTzuuxkIoilnybBmsHI6S0dH3akJ287Z4"/>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-sm">verified</span> Vaccine Certificate
+            </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic truncate mt-0.5">
+              “Fully up-to-date for elementary school admission.”
+            </p>
+</div>
+</div>
+<div class="details-content hidden mt-space-sm pt-space-sm bg-surface-bright rounded-lg p-space-sm text-on-surface-variant">
+<p class="font-label-sm text-label-sm font-semibold text-primary mb-1">Growth Percentiles:</p>
+<p class="font-body-sm text-body-sm leading-relaxed">
+            Height: 122 cm (68th percentile). Weight: 23 kg (60th percentile). Vision screening: 20/20 in both eyes. Next booster due at age 11.
+          </p>
+</div>
+</div>
+</div>
+<!-- Month Marker: January 2024 -->
+<div class="flex items-center gap-space-sm my-space-sm" data-group="jan-2024">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<span class="font-headline-sm text-headline-sm text-primary font-medium tracking-tight">January 2024</span>
+</div>
+<!-- Timeline Item: Jan 18 (ENT) -->
+<div class="timeline-entry relative pl-6" data-category="pediatrics">
+<div class="absolute left-0 top-3 w-2.5 h-2.5 rounded-full bg-tertiary ring-4 ring-surface-bright"></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md cursor-pointer timeline-card" onclick="toggleDetails(this)">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary">Jan 18, 2024</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">ENT Specialist</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Acute Otitis Media</h3>
+<p class="font-body-sm text-body-sm text-secondary">Dr. Tariq Al-Mansoor • Metro ENT Center</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base expand-icon">expand_more</span>
+</button>
+</div>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">hearing</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface truncate">Cefdinir + Ofloxacin Ear Drops</p>
+<p class="font-label-sm text-label-sm text-secondary">Non-penicillin formulation • 10 days</p>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0 shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="High contrast medical clinic referral letter and audiology report on neat white paper with clinic banner, handwritten dosage notes, and safe allergy confirmation stamp" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDonNP7DWFk7sZ8YWhLSNNh87_ZjuhKIf3Hyymx6oyFYG7wFM_-ykhbbMLMcM_nt8E5fHkF5PqKtGMAFHiviU-KHcGBMotgWsLzMqBmLYhE3MERVkphTQbiHFeVIzR9Ves__SJnTCJNJ1e7IzjgG2fqTU86VBXxDMbrtnhYYV0E-mkPE06XO0S32CaZBDayVsr37YTo-O5yWsSOdO-XiQhZK44bKK0OdjcfbcGOXCw"/>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-sm">assignment</span> Otoscopy &amp; Referral Form
+            </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic truncate mt-0.5">
+              “Right tympanic membrane inflamed; follow-up clear.”
+            </p>
+</div>
+</div>
+<div class="details-content hidden mt-space-sm pt-space-sm bg-surface-bright rounded-lg p-space-sm text-on-surface-variant">
+<p class="font-label-sm text-label-sm font-semibold text-primary mb-1">Diagnostic Notes:</p>
+<p class="font-body-sm text-body-sm leading-relaxed">
+            Severe right ear pain following common cold. Bulging erythematous membrane. Prescribed Cefdinir due to documented Penicillin allergy. Complete resolution documented at 2-week clearance.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript for Filters and Accordion Expansion -->
+<script>
+    function toggleDetails(cardElement) {
+      const details = cardElement.querySelector('.details-content');
+      const icon = cardElement.querySelector('.expand-icon');
+      if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        icon.textContent = 'expand_less';
+      } else {
+        details.classList.add('hidden');
+        icon.textContent = 'expand_more';
+      }
+    }
+
+    document.querySelectorAll('#timelineFilters .filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#timelineFilters .filter-pill').forEach(p => {
+          p.classList.remove('bg-primary-container', 'text-on-primary');
+          p.classList.add('bg-surface-container-lowest', 'text-on-surface');
+        });
+        pill.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        pill.classList.add('bg-primary-container', 'text-on-primary');
+
+        const category = pill.getAttribute('data-category');
+        document.querySelectorAll('.timeline-entry').forEach(entry => {
+          if (category === 'all' || entry.getAttribute('data-category') === category) {
+            entry.style.display = 'block';
+          } else {
+            entry.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(13,94,79,0.06)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-20 px-space-sm"><a class="flex flex-col items-center justify-center min-w-[56px] h-14 gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="home-dashboard" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-14 gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="search-records" href="#"><span class="material-symbols-outlined">search</span><span class="font-label-sm text-label-sm">Search</span></a><div class="flex items-center justify-center -mt-5"><a aria-label="Add Prescription" class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_8px_24px_rgba(13,94,79,0.35)] active:scale-95 transition-all" data-path="add-prescription" href="#"><span class="material-symbols-outlined text-3xl">add</span></a></div><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-14 gap-space-xs transition-colors text-primary font-semibold" data-path="family-member-profile" href="#"><span class="material-symbols-outlined">inventory_2</span><span class="font-label-sm text-label-sm">Vault</span></a></div></nav></body></html>

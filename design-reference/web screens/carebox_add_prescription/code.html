@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed":"#d1e7dd","error-container":"#ffdad6","secondary-container":"#d1e7dd","outline-variant":"#bec9c4","on-tertiary-fixed":"#351000","on-secondary-container":"#556961","surface-tint":"#1f6a5a","surface-container-high":"#e8e8e4","on-surface-variant":"#3f4945","surface-container-highest":"#e2e3de","surface-container":"#eeeee9","background":"#fafaf5","tertiary-container":"#8b3b0e","inverse-primary":"#8ed4c1","primary-fixed-dim":"#8ed4c1","on-tertiary-fixed-variant":"#7a2f01","surface-bright":"#fafaf5","on-secondary-fixed-variant":"#374b44","surface-container-low":"#f4f4ef","inverse-on-surface":"#f1f1ec","on-secondary-fixed":"#0c1f19","surface-container-lowest":"#ffffff","tertiary-fixed-dim":"#ffb694","surface-dim":"#dadad6","on-error-container":"#93000a","on-surface":"#1a1c19","inverse-surface":"#2f312e","primary-container":"#0d5e4f","on-error":"#ffffff","on-background":"#1a1c19","outline":"#6f7975","on-primary-container":"#8ed5c2","surface":"#fafaf5","on-primary-fixed":"#00201a","secondary-fixed-dim":"#b6cbc2","on-primary":"#ffffff","secondary":"#4f635b","on-tertiary":"#ffffff","on-primary-fixed-variant":"#005143","primary-fixed":"#a9f1dd","error":"#ba1a1a","tertiary":"#6a2700","on-secondary":"#ffffff","primary":"#004539","tertiary-fixed":"#ffdbcc","on-tertiary-container":"#ffb796","surface-variant":"#e2e3de"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.375rem","space-sm":"0.75rem","margin":"2rem","gutter-sm":"1rem","space-xl":"3rem","margin-sm":"1rem","space-md":"1.25rem","gutter":"1.5rem","space-lg":"2rem"},fontFamily:{"title-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"title-lg":["Plus Jakarta Sans"],"display-mobile":["Merriweather"],"headline-lg":["Merriweather"],"label-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-sm":["Merriweather"],"headline-md":["Merriweather"],"display":["Merriweather"],"headline-lg-mobile":["Merriweather"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},fontSize:{"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"title-lg":["18px",{lineHeight:"26px",fontWeight:"600"}],"display-mobile":["30px",{lineHeight:"40px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"42px",fontWeight:"400"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"700"}],"body-md":["14px",{lineHeight:"22px",fontWeight:"400"}],"headline-sm":["20px",{lineHeight:"28px",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",fontWeight:"400"}],"display":["40px",{lineHeight:"52px",fontWeight:"400"}],"headline-lg-mobile":["24px",{lineHeight:"32px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"26px",fontWeight:"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 bottom-0 w-64 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between p-space-md"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm px-space-xs py-space-xs"><img alt="CareBox Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XMYc6f3R_vNDQxI0zROFWJW8myy9BHhnc7Q3Hcz-_D5MvWVBjB_o_yj7gOQ5IEXMs6_FbYfWXrHbzCUv3c1RYSyJSR4flk2M-q60g7cP5_z0dkb3KfyGHRr_Hco4X8QBd-cgXHGIhY1ETIowPV9_5qKYO93YYK3gozdy3Pdlzf7-3wFjTMOi2eXS-DQlP5OSdJBbNLH44IhJgMOZfAr65JB33pQ_Nx65yzPph2r1h4"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">CareBox</span><span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase mt-1">Family Prescriptions</span></div></div><div class="px-space-xs mt-space-xs"><button class="w-full flex items-center justify-between bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container rounded-full py-space-xs px-space-md shadow-[0_4px_20px_-2px_rgba(13,94,79,0.1)] transition-all" type="button"><span class="font-label-lg text-label-lg">+ Add prescription</span><span class="flex items-center justify-center w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed"><span class="material-symbols-outlined text-sm font-bold">add</span></span></button></div><nav class="flex flex-col gap-space-xs mt-space-sm" data-active-classes="bg-secondary-container text-on-secondary-container font-semibold rounded-full"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs transition-colors bg-secondary-container text-on-secondary-container font-semibold rounded-full" data-path="home" href="#"><span class="material-symbols-outlined text-xl">dashboard</span><span class="font-body-md text-body-md flex-1">Home</span></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="search" href="#"><span class="material-symbols-outlined text-xl">search</span><span class="font-body-md text-body-md flex-1">Search</span><kbd class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">⌘K</kbd></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="family" href="#"><span class="material-symbols-outlined text-xl">group</span><span class="font-body-md text-body-md flex-1">Family</span></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="account" href="#"><span class="material-symbols-outlined text-xl">settings</span><span class="font-body-md text-body-md flex-1">Account</span></a></nav></div><div class="flex flex-col gap-space-sm pt-space-md bg-surface-container-lowest rounded-xl p-space-sm shadow-[0_2px_6px_-1px_rgba(29,41,37,0.03)]"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-lg text-label-lg text-on-surface truncate">Mona K.</span><span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block"></span>Caregiver</span></div><button class="text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">expand_more</span></button></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 max-w-[1100px] mx-auto px-8 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm flex-1 max-w-md"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span><input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-lowest rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary shadow-[0_1px_4px_rgba(0,0,0,0.02)]" placeholder="Search medications, members, schedules... (⌘K)" type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-base text-secondary">calendar_today</span><span>Today, October 24</span></div><div class="flex items-center gap-space-xs"><button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-full transition-colors relative" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary-container"></span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover ml-space-xs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/></div></div></div></header><main class="w-full pt-16 bg-background flex-1"><div class="max-w-[1100px] mx-auto px-8 py-10"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Workflow Step Indicator -->
+<div class="flex items-center justify-between mb-6">
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary hover:text-primary-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span>Back to Prescriptions</span>
+</a>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Step 1 of 2</span>
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-1.5 rounded-full bg-primary"></span>
+<span class="w-6 h-1.5 rounded-full bg-secondary-fixed"></span>
+</div>
+</div>
+</div>
+<!-- Header Banner Section -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8">
+<div class="max-w-2xl">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest block mb-2 font-bold">New Medical Record</span>
+<h1 class="font-headline-lg text-headline-lg text-primary leading-tight">Add New Prescription</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">
+        Upload prescription slips, pharmacy dispenser labels, or physician consultation notes to synchronize intake alerts.
+      </p>
+</div>
+<!-- Active Filing Member Selector -->
+<div class="bg-surface-container-lowest p-2 rounded-full shadow-[0_2px_12px_rgba(13,94,79,0.04)] flex items-center gap-1 self-start lg:self-auto">
+<span class="font-label-md text-label-md text-on-surface-variant pl-3 pr-2 hidden sm:inline">Filing for:</span>
+<!-- Mona -->
+<button class="member-pill group flex items-center gap-2 px-3 py-1.5 rounded-full text-on-surface hover:bg-surface-container transition-colors" data-member="Mona" type="button">
+<span class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center justify-center font-bold">M</span>
+<span class="font-label-md text-label-md">Mona</span>
+</button>
+<!-- Layla (Selected) -->
+<button class="member-pill active flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary text-on-primary shadow-sm transition-all" data-member="Layla" type="button">
+<span class="w-5 h-5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm flex items-center justify-center font-bold">L</span>
+<span class="font-label-md text-label-md">Layla</span>
+<span class="material-symbols-outlined text-sm font-bold text-inverse-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</button>
+<!-- Omar -->
+<button class="member-pill group flex items-center gap-2 px-3 py-1.5 rounded-full text-on-surface hover:bg-surface-container transition-colors" data-member="Omar" type="button">
+<span class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center font-bold">O</span>
+<span class="font-label-md text-label-md">Omar</span>
+</button>
+<!-- Youssef -->
+<button class="member-pill group flex items-center gap-2 px-3 py-1.5 rounded-full text-on-surface hover:bg-surface-container transition-colors" data-member="Youssef" type="button">
+<span class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center font-bold">Y</span>
+<span class="font-label-md text-label-md">Youssef</span>
+</button>
+</div>
+</div>
+<!-- Primary Workspace: Two Columns -->
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: Prescription Metadata & Clinical Form (7 Cols) -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-[24px] p-8 shadow-[0_4px_20px_-2px_rgba(13,94,79,0.04),0_2px_6px_-1px_rgba(29,41,37,0.03)] flex flex-col gap-6">
+<!-- Card Section Title -->
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">medication</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Consultation Details</h2>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant">Required fields marked *</span>
+</div>
+<!-- Row 1: Visit Date & Prescription Title/Reason -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<div class="md:col-span-5 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+<span>Date of Visit *</span>
+</label>
+<div class="relative">
+<input class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all" type="text" value="Oct 24, 2024"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">event</span>
+</div>
+</div>
+<div class="md:col-span-7 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+<span>Condition / Prescription Title *</span>
+<span class="font-label-sm text-label-sm text-secondary font-normal">e.g. Acute Otitis</span>
+</label>
+<div class="relative">
+<input class="w-full px-4 py-2.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all" placeholder="e.g., Seasonal Ear Infection" type="text" value="Seasonal Ear Infection"/>
+</div>
+</div>
+</div>
+<!-- Row 2: Doctor Name & Specialty -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<div class="md:col-span-7 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Physician / Prescriber</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">stethoscope</span>
+<input class="w-full pl-10 pr-9 py-2.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all" placeholder="Search provider..." type="text" value="Dr. Clara Bennett, MD"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant text-base">check_circle</span>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Specialty</label>
+<div class="relative">
+<select class="w-full pl-3 pr-8 py-2.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm appearance-none cursor-pointer transition-all">
+<option selected="">Pediatrics</option>
+<option>General Medicine</option>
+<option>Otolaryngology (ENT)</option>
+<option>Dermatology</option>
+<option>Pulmonology</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">unfold_more</span>
+</div>
+</div>
+</div>
+<!-- Row 3: Clinic / Hospital Facility -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Clinic or Hospital Facility</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Optional</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">local_hospital</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all" placeholder="Facility name &amp; branch..." type="text" value="St. Jude Children's Wellness Center"/>
+</div>
+</div>
+<!-- Row 4: Dosage & Pharmacist Notes -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Dosage Directives &amp; Instructions</label>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-container flex items-center gap-1 font-semibold" type="button">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span> Auto-fill from attachment
+          </button>
+</div>
+<textarea class="w-full p-3.5 bg-surface-container-low focus:bg-surface-container-lowest text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm resize-none transition-all placeholder:text-outline" placeholder="Dosage instructions, pharmacy notes, or doctor recommendations..." rows="3">Amoxicillin 250mg/5mL oral suspension: 5 mL twice daily with food for 10 days. Ensure full regimen is finished even if pain subsides.</textarea>
+</div>
+<!-- Row 5: Collapsible Clinical Vitals Accordion -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-300">
+<button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-surface-container-high/60 transition-colors" id="vitalsAccordionToggle" type="button">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">vital_signs</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span>More details</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant font-normal">Optional</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Weight, height, recorded temperature, and planned follow-ups</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary transition-transform duration-200" id="accordionArrow">expand_more</span>
+</button>
+<!-- Accordion Body -->
+<div class="px-5 pb-5 pt-2 flex flex-col gap-4" id="vitalsAccordionBody">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Patient Weight</label>
+<div class="relative">
+<input class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" type="text" value="26 kg"/>
+<span class="font-label-sm text-label-sm text-outline absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">Metric</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Height</label>
+<div class="relative">
+<input class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" type="text" value="128 cm"/>
+<span class="font-label-sm text-label-sm text-outline absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">Child</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Body Temp</label>
+<div class="relative">
+<input class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" type="text" value="98.6°F"/>
+<span class="material-symbols-outlined text-sm text-outline absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">thermostat</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+<div class="sm:col-span-7 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Observed Symptoms</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" type="text" value="Earache, localized redness, mild nighttime irritability"/>
+</div>
+<div class="sm:col-span-5 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Follow-up Checkup</label>
+<div class="relative">
+<input class="w-full pl-8 pr-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" type="text" value="Nov 07, 2024"/>
+<span class="material-symbols-outlined text-sm text-secondary absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none">event_repeat</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg px-8 py-3.5 shadow-md hover:shadow-lg transition-all transform active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+<span>Save Prescription to CareBox</span>
+</button>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-2 px-4 rounded-lg hover:bg-surface-container-low transition-colors" href="#">
+          Discard Draft
+        </a>
+</div>
+</div>
+<!-- RIGHT COLUMN: Document & Photo Attachments Bento (5 Cols) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
+<!-- Attachment Box Container -->
+<div class="bg-surface-container-low rounded-[24px] p-6 shadow-[0_4px_20px_-2px_rgba(13,94,79,0.04),0_2px_6px_-1px_rgba(29,41,37,0.03)] flex flex-col gap-5">
+<!-- Header & Slots Counter -->
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">attachment</span>
+<h3 class="font-title-lg text-title-lg text-on-surface">Prescription Files</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Upload photos, clear scans, or PDF documents. Clear illumination ensures optical character reading.
+            </p>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
+            2 of 4 used
+          </span>
+</div>
+<!-- 2x2 Attachment Grid -->
+<div class="grid grid-cols-2 gap-3.5">
+<!-- Slot 1: Filled (Doctor's Note Scan) -->
+<div class="group relative aspect-square rounded-2xl overflow-hidden bg-surface-container-lowest shadow-sm flex flex-col justify-between p-2.5 transition-all hover:shadow-md">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High quality overhead photograph of a doctor clinic prescription paper document on off-white textured stationery with clean handwriting and blue medical stamp in a well-lit medical room with natural light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgtWxoIb7E5wWrv4l0Yl-9ogKSlKqFruy5zJA9UCre8x5f0akvc-8xbeUUPTdpIaJBbAZyWPE4wrUVgpUdgD0oWAdQ1qcFQ_6tjGJ0zXwUEGL3ckr0_4Wr6aB_KpiQZI4RAvPFCrLJH2KbLQU5Igv-_QKILAYszbxgv4gaHj2vbVcKY_qwzAwZDswchsi2zhj6oBWnDWFbUg2yYZpIxdIcq7SWQEgeBu-c5EHDf8k')"></div>
+<!-- Scrim gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/30 to-transparent"></div>
+<!-- Top Actions Overlay -->
+<div class="relative z-10 flex items-center justify-between w-full">
+<span class="w-6 h-6 rounded-full bg-surface-container-lowest/90 backdrop-blur-xs text-primary flex items-center justify-center font-bold text-xs shadow-xs">
+                Rx
+              </span>
+<div class="flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+<button class="w-7 h-7 rounded-full bg-surface-container-lowest/80 hover:bg-surface-container-lowest text-on-surface flex items-center justify-center transition-colors" title="Preview" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-error-container hover:bg-error text-on-error-container hover:text-on-error flex items-center justify-center transition-colors" title="Delete" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Bottom Metadata -->
+<div class="relative z-10 flex flex-col">
+<span class="font-label-sm text-label-sm text-inverse-on-surface truncate font-semibold">rx_paper_oct24.jpg</span>
+<span class="font-body-sm text-[10px] text-surface-container-highest">1.4 MB • St. Jude Clinic</span>
+</div>
+</div>
+<!-- Slot 2: Filled (Pharmacy Bottle Label) -->
+<div class="group relative aspect-square rounded-2xl overflow-hidden bg-surface-container-lowest shadow-sm flex flex-col justify-between p-2.5 transition-all hover:shadow-md">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up sharp photograph of an amber apothecary pharmaceutical medicine bottle label displaying dosage instructions and pediatric antibiotic details with soft clean background shadows" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBi6P8vy871BZqmxq6fl11OxuLX-R7Zv9rroPBiUqkgkHF1V7eRYrkBguL-V-Fnw5SCftmlQYvKIo_r3I9_aH96LX6SqU-DwU98dk5qKFzzWF4D1G8TrRi6Oo2qchbw0oYZwO1GjdCKUYQJB7vLD2YhLVsTgE796HiG0a_ILqjmaspgu6B9dmYIO5lC8Y2F_-ewq977xG1guB1bVUuSHjUYL37wnubSz7SR3pfhRkc')"></div>
+<!-- Scrim gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/30 to-transparent"></div>
+<!-- Top Actions Overlay -->
+<div class="relative z-10 flex items-center justify-between w-full">
+<span class="w-6 h-6 rounded-full bg-surface-container-lowest/90 backdrop-blur-xs text-primary flex items-center justify-center font-bold text-xs shadow-xs">
+<span class="material-symbols-outlined text-xs">vaccines</span>
+</span>
+<div class="flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+<button class="w-7 h-7 rounded-full bg-surface-container-lowest/80 hover:bg-surface-container-lowest text-on-surface flex items-center justify-center transition-colors" title="Preview" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-error-container hover:bg-error text-on-error-container hover:text-on-error flex items-center justify-center transition-colors" title="Delete" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Bottom Metadata -->
+<div class="relative z-10 flex flex-col">
+<span class="font-label-sm text-label-sm text-inverse-on-surface truncate font-semibold">pharmacy_bottle.jpg</span>
+<span class="font-body-sm text-[10px] text-surface-container-highest">890 KB • Dispenser Tag</span>
+</div>
+</div>
+<!-- Slot 3: Empty Slot -->
+<div class="aspect-square rounded-2xl bg-surface-container-lowest/70 hover:bg-surface-container-lowest shadow-xs flex flex-col items-center justify-center p-3 text-center cursor-pointer group transition-all">
+<div class="w-10 h-10 rounded-full bg-secondary-container/60 text-primary flex items-center justify-center mb-2 group-hover:scale-110 group-hover:bg-secondary-container transition-all">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Add photo or PDF</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Slot 3</span>
+</div>
+<!-- Slot 4: Empty Slot -->
+<div class="aspect-square rounded-2xl bg-surface-container-lowest/70 hover:bg-surface-container-lowest shadow-xs flex flex-col items-center justify-center p-3 text-center cursor-pointer group transition-all">
+<div class="w-10 h-10 rounded-full bg-secondary-container/60 text-primary flex items-center justify-center mb-2 group-hover:scale-110 group-hover:bg-secondary-container transition-all">
+<span class="material-symbols-outlined text-xl">file_upload</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Add photo or PDF</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Slot 4</span>
+</div>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="bg-surface-container-lowest p-4 rounded-xl text-center flex flex-col items-center justify-center gap-1 shadow-xs hover:bg-surface-bright transition-colors cursor-pointer">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">cloud_upload</span>
+<span>Or drag files directly from your computer</span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Supports high-res JPG, PNG, and PDF up to 15MB each</span>
+</div>
+<!-- OCR Scan Callout Widget -->
+<div class="bg-surface-container p-3.5 rounded-xl flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary-container shrink-0 shadow-2xs">
+<span class="material-symbols-outlined text-xl">document_scanner</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Smart Extraction Active</span>
+<span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+              Detected Amoxicillin 250mg/5mL • 10-day cycle
+            </p>
+</div>
+</div>
+<!-- Security & Privacy Reassurance Callout -->
+<div class="flex items-center gap-2.5 pt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-secondary shrink-0">verified_user</span>
+<span class="font-body-sm text-body-sm">
+            End-to-end encrypted &amp; private exclusively to your household.
+          </span>
+</div>
+</div>
+<!-- Quick Tips Card -->
+<div class="bg-surface-container-lowest p-5 rounded-[20px] shadow-[0_2px_10px_rgba(13,94,79,0.03)] flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-bold">Apothecary Checklist</span>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-base mt-0.5">wb_incandescent</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Make sure the prescription expiration date and refill count are visible on the camera capture to receive automated refill alerts.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Accordion & Selection Logic -->
+<script>
+    // Member selection pill toggle
+    const memberPills = document.querySelectorAll('.member-pill');
+    memberPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        memberPills.forEach(p => {
+          p.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+          p.classList.add('text-on-surface', 'hover:bg-surface-container');
+          const check = p.querySelector('.material-symbols-outlined');
+          if (check) check.remove();
+        });
+
+        pill.classList.remove('text-on-surface', 'hover:bg-surface-container');
+        pill.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'active');
+
+        // Add checkmark
+        const checkmark = document.createElement('span');
+        checkmark.className = 'material-symbols-outlined text-sm font-bold text-inverse-primary';
+        checkmark.style.fontVariationSettings = "'FILL' 1";
+        checkmark.innerText = 'check';
+        pill.appendChild(checkmark);
+      });
+    });
+
+    // Vitals Accordion collapse / expand toggle
+    const toggleBtn = document.getElementById('vitalsAccordionToggle');
+    const accordionBody = document.getElementById('vitalsAccordionBody');
+    const accordionArrow = document.getElementById('accordionArrow');
+    let isExpanded = true;
+
+    if (toggleBtn && accordionBody) {
+      toggleBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        if (isExpanded) {
+          accordionBody.classList.remove('hidden');
+          accordionArrow.style.transform = 'rotate(0deg)';
+        } else {
+          accordionBody.classList.add('hidden');
+          accordionArrow.style.transform = 'rotate(180deg)';
+        }
+      });
+    }
+  </script>
+</div></div></main></div></body></html>

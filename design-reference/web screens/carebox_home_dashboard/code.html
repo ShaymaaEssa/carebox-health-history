@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed":"#d1e7dd","error-container":"#ffdad6","secondary-container":"#d1e7dd","outline-variant":"#bec9c4","on-tertiary-fixed":"#351000","on-secondary-container":"#556961","surface-tint":"#1f6a5a","surface-container-high":"#e8e8e4","on-surface-variant":"#3f4945","surface-container-highest":"#e2e3de","surface-container":"#eeeee9","background":"#fafaf5","tertiary-container":"#8b3b0e","inverse-primary":"#8ed4c1","primary-fixed-dim":"#8ed4c1","on-tertiary-fixed-variant":"#7a2f01","surface-bright":"#fafaf5","on-secondary-fixed-variant":"#374b44","surface-container-low":"#f4f4ef","inverse-on-surface":"#f1f1ec","on-secondary-fixed":"#0c1f19","surface-container-lowest":"#ffffff","tertiary-fixed-dim":"#ffb694","surface-dim":"#dadad6","on-error-container":"#93000a","on-surface":"#1a1c19","inverse-surface":"#2f312e","primary-container":"#0d5e4f","on-error":"#ffffff","on-background":"#1a1c19","outline":"#6f7975","on-primary-container":"#8ed5c2","surface":"#fafaf5","on-primary-fixed":"#00201a","secondary-fixed-dim":"#b6cbc2","on-primary":"#ffffff","secondary":"#4f635b","on-tertiary":"#ffffff","on-primary-fixed-variant":"#005143","primary-fixed":"#a9f1dd","error":"#ba1a1a","tertiary":"#6a2700","on-secondary":"#ffffff","primary":"#004539","tertiary-fixed":"#ffdbcc","on-tertiary-container":"#ffb796","surface-variant":"#e2e3de"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.375rem","space-sm":"0.75rem","margin":"2rem","gutter-sm":"1rem","space-xl":"3rem","margin-sm":"1rem","space-md":"1.25rem","gutter":"1.5rem","space-lg":"2rem"},fontFamily:{"title-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"title-lg":["Plus Jakarta Sans"],"display-mobile":["Merriweather"],"headline-lg":["Merriweather"],"label-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-sm":["Merriweather"],"headline-md":["Merriweather"],"display":["Merriweather"],"headline-lg-mobile":["Merriweather"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},fontSize:{"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"title-lg":["18px",{lineHeight:"26px",fontWeight:"600"}],"display-mobile":["30px",{lineHeight:"40px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"42px",fontWeight:"400"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"700"}],"body-md":["14px",{lineHeight:"22px",fontWeight:"400"}],"headline-sm":["20px",{lineHeight:"28px",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",fontWeight:"400"}],"display":["40px",{lineHeight:"52px",fontWeight:"400"}],"headline-lg-mobile":["24px",{lineHeight:"32px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"18px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"26px",fontWeight:"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 bottom-0 w-64 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between p-space-md"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm px-space-xs py-space-xs"><img alt="CareBox Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XMYc6f3R_vNDQxI0zROFWJW8myy9BHhnc7Q3Hcz-_D5MvWVBjB_o_yj7gOQ5IEXMs6_FbYfWXrHbzCUv3c1RYSyJSR4flk2M-q60g7cP5_z0dkb3KfyGHRr_Hco4X8QBd-cgXHGIhY1ETIowPV9_5qKYO93YYK3gozdy3Pdlzf7-3wFjTMOi2eXS-DQlP5OSdJBbNLH44IhJgMOZfAr65JB33pQ_Nx65yzPph2r1h4"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">CareBox</span><span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase mt-1">Family Prescriptions</span></div></div><div class="px-space-xs mt-space-xs"><button class="w-full flex items-center justify-between bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container rounded-full py-space-xs px-space-md shadow-[0_4px_20px_-2px_rgba(13,94,79,0.1)] transition-all" type="button"><span class="font-label-lg text-label-lg">+ Add prescription</span><span class="flex items-center justify-center w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed"><span class="material-symbols-outlined text-sm font-bold">add</span></span></button></div><nav class="flex flex-col gap-space-xs mt-space-sm" data-active-classes="bg-secondary-container text-on-secondary-container font-semibold rounded-full"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs transition-colors bg-secondary-container text-on-secondary-container font-semibold rounded-full" data-path="home" href="#"><span class="material-symbols-outlined text-xl">dashboard</span><span class="font-body-md text-body-md flex-1">Home</span></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="search" href="#"><span class="material-symbols-outlined text-xl">search</span><span class="font-body-md text-body-md flex-1">Search</span><kbd class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">⌘K</kbd></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="family" href="#"><span class="material-symbols-outlined text-xl">group</span><span class="font-body-md text-body-md flex-1">Family</span></a><a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="account" href="#"><span class="material-symbols-outlined text-xl">settings</span><span class="font-body-md text-body-md flex-1">Account</span></a></nav></div><div class="flex flex-col gap-space-sm pt-space-md bg-surface-container-lowest rounded-xl p-space-sm shadow-[0_2px_6px_-1px_rgba(29,41,37,0.03)]"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-lg text-label-lg text-on-surface truncate">Mona K.</span><span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block"></span>Caregiver</span></div><button class="text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">expand_more</span></button></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 max-w-[1100px] mx-auto px-8 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm flex-1 max-w-md"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span><input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-lowest rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary shadow-[0_1px_4px_rgba(0,0,0,0.02)]" placeholder="Search medications, members, schedules... (⌘K)" type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-base text-secondary">calendar_today</span><span>Today, October 24</span></div><div class="flex items-center gap-space-xs"><button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-full transition-colors relative" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary-container"></span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover ml-space-xs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/></div></div></div></header><main class="w-full pt-16 bg-background flex-1"><div class="max-w-[1100px] mx-auto px-8 py-10"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Greeting & Key Metrics Summary -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant self-start">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Apothecary Vault • Active Sync</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Good morning, Mona</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+        All 4 family health records are up to date and safely stored within your encrypted vault.
+      </p>
+</div>
+<!-- Stat Modules (Pair) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md shrink-0 w-full lg:w-auto">
+<!-- Stat Card 1: Family Profiles -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between min-w-[210px] group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Family Members</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">All insured</span>
+</div>
+<div class="flex items-baseline gap-2 mt-space-sm">
+<span class="font-headline-md text-headline-md text-primary font-bold">4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">active profiles</span>
+</div>
+<div class="flex items-center -space-x-2 mt-space-sm pt-space-xs">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-label-sm text-label-sm">L</div>
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-sm text-label-sm">O</div>
+<img alt="Mona" class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-label-sm">Y</div>
+</div>
+</div>
+<!-- Stat Card 2: Prescriptions Count -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between min-w-[210px] group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Prescriptions</span>
+<span class="material-symbols-outlined text-base text-primary">verified_user</span>
+</div>
+<div class="flex items-baseline gap-2 mt-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">18</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">total files</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm pt-space-xs text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+<span>+2 added this month</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Family Members Shelf Section -->
+<section class="flex flex-col gap-space-md">
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Your Family</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quick access to individual medical records &amp; histories</p>
+</div>
+<button class="hidden sm:inline-flex items-center gap-1 text-primary hover:text-primary-container font-label-md text-label-md transition-colors" type="button">
+<span>Manage profiles</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+<!-- 4 Tonal Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- 1. Layla (Blush tint) -->
+<div class="bg-tertiary-fixed/30 rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-title-lg text-title-lg shadow-sm">
+            L
+          </div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface font-label-sm text-label-sm backdrop-blur-xs">
+            Daughter • 8y
+          </span>
+</div>
+<div class="mt-space-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Layla</h3>
+<p class="font-label-md text-label-md text-tertiary font-semibold mt-0.5">5 prescriptions</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/50 rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mt-0.5 shrink-0">calendar_clock</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last visit: Oct 14, 2024</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Dr. Clara Bennett (Pediatrician)</span>
+</div>
+</div>
+</div>
+<!-- 2. Omar (Sage/Mint tint) -->
+<div class="bg-secondary-fixed/40 rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-title-lg text-title-lg shadow-sm">
+            O
+          </div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface font-label-sm text-label-sm backdrop-blur-xs">
+            Son • 12y
+          </span>
+</div>
+<div class="mt-space-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Omar</h3>
+<p class="font-label-md text-label-md text-primary font-semibold mt-0.5">4 prescriptions</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/50 rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mt-0.5 shrink-0">calendar_clock</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last visit: Sep 28, 2024</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Dr. Al-Mansoor (Dentist)</span>
+</div>
+</div>
+</div>
+<!-- 3. Mona (Linen / Warm Amber tint) -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<img alt="Mona profile portrait" class="w-12 h-12 rounded-full object-cover shadow-sm ring-2 ring-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoz6O93a8JoDxBllNeLGcemvCKpVN1lVUnt2KRCp3MPSXUmRMWsOgPGxK2-G3Kl3eaRM61ZwsfxmzJCrY_ciskd4J0AaREDk7nLeK47KqD3GEmU0awpMJkFifpdPWmfXf7xJbocaFuZjYAumpuadOZ1ZkT-UBSaKmZwrNVADDK3Vc9raZ6tFcu1hHewiZjlOlG4kIz7veWz45Mls7vc6wnMBVc0aCtSww-_K7UDYU"/>
+<span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">
+            You / Mother
+          </span>
+</div>
+<div class="mt-space-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Mona</h3>
+<p class="font-label-md text-label-md text-secondary font-semibold mt-0.5">6 prescriptions</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/70 rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mt-0.5 shrink-0">calendar_clock</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last visit: Nov 02, 2024</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Dr. Sarah Chen (Endo)</span>
+</div>
+</div>
+</div>
+<!-- 4. Youssef (Slate / Periwinkle tint) -->
+<div class="bg-surface-container-high rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-title-lg text-title-lg shadow-sm">
+            Y
+          </div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface font-label-sm text-label-sm backdrop-blur-xs">
+            Partner / Father
+          </span>
+</div>
+<div class="mt-space-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Youssef</h3>
+<p class="font-label-md text-label-md text-on-surface-variant font-semibold mt-0.5">3 prescriptions</p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/50 rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant mt-0.5 shrink-0">calendar_clock</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last visit: Aug 19, 2024</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Dr. Marcus (Ophthalmology)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Refill Alert Callout (Apothecary Tactile Bar) -->
+<section class="bg-gradient-to-r from-surface-container-lowest via-surface-container-low to-surface-container rounded-xl p-space-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">medication</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Upcoming Medication Refills Due</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Layla's Amoxicillin cycle ends in 3 days • Dr. Bennett's refill voucher pre-authorized</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-stretch sm:self-auto">
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex-1 sm:flex-none text-center" type="button">
+        Remind Later
+      </button>
+<button class="px-4 py-2 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-colors flex items-center justify-center gap-1 flex-1 sm:flex-none" type="button">
+<span>Request Refill</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</section>
+<!-- Recent Prescriptions Detailed Archive Section -->
+<section class="flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Prescriptions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Scanned prescriptions, active treatment cycles, and pharmacy instructions</p>
+</div>
+<!-- Filter Segmented Tabs -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0" id="filter-container">
+<button class="filter-btn active px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm transition-all shadow-xs" data-target="all" type="button">
+          All (18)
+        </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-target="layla" type="button">
+          Layla (5)
+        </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-target="omar" type="button">
+          Omar (4)
+        </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-target="mona" type="button">
+          Mona (6)
+        </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-target="youssef" type="button">
+          Youssef (3)
+        </button>
+</div>
+</div>
+<!-- 2-Column Detailed Prescription Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="prescription-grid">
+<!-- Card 1: Layla -->
+<article class="prescription-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group" data-member="layla">
+<div class="flex flex-col gap-space-md">
+<!-- Top Metadata Bar -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<!-- Visual Stamp / Paper Scan Thumbnail -->
+<div class="relative w-14 h-16 rounded-lg bg-surface-container-low p-1.5 shadow-xs flex flex-col justify-between overflow-hidden shrink-0">
+<div class="w-full flex items-center justify-between">
+<span class="w-2.5 h-1 rounded-xs bg-outline-variant"></span>
+<span class="text-[9px] font-bold text-primary font-display leading-none">Rx</span>
+</div>
+<div class="space-y-1">
+<div class="h-0.5 w-full bg-outline-variant"></div>
+<div class="h-0.5 w-3/4 bg-outline-variant"></div>
+<div class="h-0.5 w-4/5 bg-outline-variant"></div>
+</div>
+<!-- Apothecary Stamp Graphic -->
+<div class="w-6 h-6 rounded-full bg-secondary-fixed/70 text-on-secondary-fixed text-[8px] font-bold flex items-center justify-center self-end -mb-1 -mr-1">
+                  OK
+                </div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface">Dr. Clara Bennett, MD</span>
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Valley Pediatric Care Center</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Date: Oct 14, 2024</span>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-col items-end gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed/60 text-on-tertiary-fixed font-label-sm text-label-sm">
+                Layla
+              </span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                Pediatrics
+              </span>
+</div>
+</div>
+<!-- Medication Guidance Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Prescribed Regimen</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-primary">Amoxicillin</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">250mg / 5ml</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Oral suspension (take 5ml twice daily with food) • Saline nasal mist as needed for nighttime relief.
+            </p>
+</div>
+</div>
+<!-- Footer: Attachments & Actions -->
+<div class="mt-space-lg pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">attachment</span>
+<span>2 attachments</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">PDF • Lab Slip</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="Download Record" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Full Details" type="button">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Mona -->
+<article class="prescription-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group" data-member="mona">
+<div class="flex flex-col gap-space-md">
+<!-- Top Metadata Bar -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<!-- Visual Stamp / Paper Scan Thumbnail -->
+<div class="relative w-14 h-16 rounded-lg bg-surface-container-low p-1.5 shadow-xs flex flex-col justify-between overflow-hidden shrink-0">
+<div class="w-full flex items-center justify-between">
+<span class="w-2.5 h-1 rounded-xs bg-outline-variant"></span>
+<span class="text-[9px] font-bold text-tertiary font-display leading-none">Rx</span>
+</div>
+<div class="space-y-1">
+<div class="h-0.5 w-full bg-outline-variant"></div>
+<div class="h-0.5 w-2/3 bg-outline-variant"></div>
+<div class="h-0.5 w-3/4 bg-outline-variant"></div>
+</div>
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed/80 text-on-tertiary-fixed text-[8px] font-bold flex items-center justify-center self-end -mb-1 -mr-1">
+                  RX
+                </div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface">Dr. Sarah Chen, MD</span>
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Metropolitan Endocrinology Clinic</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Date: Nov 02, 2024</span>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-col items-end gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm">
+                Mona
+              </span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+                Endocrinology
+              </span>
+</div>
+</div>
+<!-- Medication Guidance Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Prescribed Regimen</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-tertiary">Levothyroxine</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">50 mcg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Take 1 tablet every morning on an empty stomach with a full glass of water • 2,000 IU Vitamin D3 daily drops.
+            </p>
+</div>
+</div>
+<!-- Footer: Attachments & Actions -->
+<div class="mt-space-lg pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">attachment</span>
+<span>3 attachments</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Panel • Dosage Guide</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="Download Record" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Full Details" type="button">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Omar -->
+<article class="prescription-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group" data-member="omar">
+<div class="flex flex-col gap-space-md">
+<!-- Top Metadata Bar -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<!-- Visual Stamp / Paper Scan Thumbnail -->
+<div class="relative w-14 h-16 rounded-lg bg-surface-container-low p-1.5 shadow-xs flex flex-col justify-between overflow-hidden shrink-0">
+<div class="w-full flex items-center justify-between">
+<span class="w-2.5 h-1 rounded-xs bg-outline-variant"></span>
+<span class="text-[9px] font-bold text-secondary font-display leading-none">Rx</span>
+</div>
+<div class="space-y-1">
+<div class="h-0.5 w-full bg-outline-variant"></div>
+<div class="h-0.5 w-4/5 bg-outline-variant"></div>
+<div class="h-0.5 w-1/2 bg-outline-variant"></div>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary-fixed/90 text-on-secondary-fixed text-[8px] font-bold flex items-center justify-center self-end -mb-1 -mr-1">
+                  DDS
+                </div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface">Dr. Tariq Al-Mansoor, DDS</span>
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Northside Orthodontic Institute</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Date: Sep 28, 2024</span>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-col items-end gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm">
+                Omar
+              </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                Orthodontics
+              </span>
+</div>
+</div>
+<!-- Medication Guidance Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Prescribed Regimen</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-primary">Chlorhexidine</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">0.12% Oral Rinse</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              15ml swish and spit twice daily after brushing • Orthodontic relief wax kit application instructions attached.
+            </p>
+</div>
+</div>
+<!-- Footer: Attachments & Actions -->
+<div class="mt-space-lg pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">attachment</span>
+<span>1 attachment</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Care Instructions</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="Download Record" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Full Details" type="button">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Youssef -->
+<article class="prescription-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group" data-member="youssef">
+<div class="flex flex-col gap-space-md">
+<!-- Top Metadata Bar -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<!-- Visual Stamp / Paper Scan Thumbnail -->
+<div class="relative w-14 h-16 rounded-lg bg-surface-container-low p-1.5 shadow-xs flex flex-col justify-between overflow-hidden shrink-0">
+<div class="w-full flex items-center justify-between">
+<span class="w-2.5 h-1 rounded-xs bg-outline-variant"></span>
+<span class="text-[9px] font-bold text-on-surface-variant font-display leading-none">Rx</span>
+</div>
+<div class="space-y-1">
+<div class="h-0.5 w-full bg-outline-variant"></div>
+<div class="h-0.5 w-3/4 bg-outline-variant"></div>
+<div class="h-0.5 w-2/3 bg-outline-variant"></div>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant text-[8px] font-bold flex items-center justify-center self-end -mb-1 -mr-1">
+                  OD
+                </div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface">Dr. Julian Marcus, OD</span>
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Oak Ridge Eye Specialty Group</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Date: Aug 19, 2024</span>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-col items-end gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                Youssef
+              </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+                Optometry
+              </span>
+</div>
+</div>
+<!-- Medication Guidance Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Prescribed Regimen</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Ketotifen</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">0.025% Drops</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              1 drop in each eye twice daily (every 8 to 12 hours) • Artificial tears lubricant as needed between doses.
+            </p>
+</div>
+</div>
+<!-- Footer: Attachments & Actions -->
+<div class="mt-space-lg pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">attachment</span>
+<span>2 attachments</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Acuity Scan • Rx</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="Download Record" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Full Details" type="button">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Quick Upload Drag & Drop Surface Strip -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">document_scanner</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Received a new paper prescription slip?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Snap a photo or drop a clinic PDF here to automatically parse dosages and assign member tags</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base">photo_camera</span>
+<span>Scan via Camera</span>
+</button>
+<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-base">upload_file</span>
+<span>Upload File</span>
+</button>
+</div>
+</section>
+<!-- Interactive Filter Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.prescription-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Reset styles
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary', 'shadow-xs');
+            b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+          });
+
+          // Activate clicked button
+          btn.classList.add('bg-primary', 'text-on-primary', 'shadow-xs');
+          btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+
+          const target = btn.getAttribute('data-target');
+
+          cards.forEach(card => {
+            const member = card.getAttribute('data-member');
+            if (target === 'all' || member === target) {
+              card.style.display = 'flex';
+              card.style.opacity = '0';
+              setTimeout(() => {
+                card.style.opacity = '1';
+              }, 50);
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</div></div></main></div></body></html>
