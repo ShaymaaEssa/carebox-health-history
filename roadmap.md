@@ -19,3 +19,9 @@
 - [x] Adapt the mobile family shelf and web family grid to the Stitch references
 - [x] Refine dashboard greeting, summary counts, privacy note, and recent prescription section
 - [ ] Verify dashboard layout at phone and desktop widths
+
+# Dashboard simplification
+
+- [ ] Make recent records easier to reach and family members easier to scan on mobile
+- [ ] Remove redundant dashboard controls and unverifiable security claims
+- [ ] Verify the updated dashboard at phone, tablet, and desktop widths
