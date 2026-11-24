@@ -7,25 +7,21 @@ import {
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core";
-import {
-  SortableContext,
-  arrayMove,
-  rectSortingStrategy,
-  useSortable,
-} from "@dnd-kit/sortable";
+import { SortableContext, arrayMove, rectSortingStrategy, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { FileText, GripVertical, Loader2, Plus, X } from "lucide-react";
+import { FileText, GripVertical, Loader2, Paperclip, Plus, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { ConfirmDialog } from "@/components/confirm-dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
+  isImage,
   removeAttachment,
   reorderAttachments,
   signedUrl,
   uploadAttachment,
-  isImage,
   validateFile,
 } from "@/lib/attachments";
 import { attachmentsQuery } from "@/lib/queries";
@@ -36,7 +32,7 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: attachment.id,
   });
-  const { data: url } = useQuery({
+  const { data: url, isLoading } = useQuery({
     queryKey: ["signed-url", attachment.storage_path],
     queryFn: () => signedUrl(attachment.storage_path),
     enabled: isImage(attachment.mime_type),
@@ -47,22 +43,37 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`relative overflow-hidden rounded-xl border border-border bg-muted transition-shadow ${
-        isDragging ? "opacity-70 shadow-[var(--shadow-lift)]" : ""
+      className={`relative overflow-hidden rounded-[16px] border border-border/80 bg-muted shadow-2xs transition-shadow ${
+        isDragging ? "opacity-75 shadow-[var(--shadow-lift)]" : ""
       }`}
     >
       <div className="flex aspect-square items-center justify-center">
-        {isImage(attachment.mime_type) && url ? (
-          <img
-            src={url}
-            alt={attachment.original_file_name}
-            loading="lazy"
-            className="animate-fade-in h-full w-full object-cover"
-          />
+        {isImage(attachment.mime_type) ? (
+          isLoading ? (
+            <Skeleton className="h-full w-full rounded-[16px]" />
+          ) : url ? (
+            <img
+              src={url}
+              alt={attachment.original_file_name}
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              className="animate-fade-in h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex flex-col items-center gap-1 text-muted-foreground">
+              <FileText className="h-6 w-6" />
+              <span className="text-[10px] uppercase">Image</span>
+            </div>
+          )
         ) : (
-          <div className="flex flex-col items-center gap-1 text-muted-foreground">
-            <FileText className="h-7 w-7" />
-            <span className="text-[10px] uppercase">PDF</span>
+          <div className="flex flex-col items-center gap-1.5 px-2 text-center text-muted-foreground">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-primary">
+              <FileText className="h-5 w-5" />
+            </span>
+            <span className="max-w-full truncate text-[11px] font-semibold text-foreground">
+              {attachment.original_file_name}
+            </span>
+            <span className="text-[10px] font-semibold uppercase">PDF</span>
           </div>
         )}
       </div>
@@ -70,14 +81,14 @@ function Thumb({ attachment, onRemove }: { attachment: Attachment; onRemove: () 
         type="button"
         aria-label="Remove attachment"
         onClick={onRemove}
-        className="absolute right-1.5 top-1.5 grid h-9 w-9 place-items-center rounded-full bg-foreground/70 text-background transition-colors hover:bg-destructive"
+        className="absolute top-2 right-2 grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-destructive text-destructive-foreground shadow-xs transition-transform hover:scale-105"
       >
         <X className="h-4 w-4" />
       </button>
       <button
         type="button"
         aria-label="Reorder attachment"
-        className="absolute bottom-1.5 left-1.5 grid h-9 w-9 cursor-grab touch-none place-items-center rounded-full bg-foreground/60 text-background active:cursor-grabbing"
+        className="absolute bottom-2 left-2 grid h-8 w-8 cursor-grab touch-none place-items-center rounded-full bg-foreground/70 text-background shadow-xs active:cursor-grabbing"
         {...attributes}
         {...listeners}
       >
@@ -166,7 +177,10 @@ export function AttachmentManager({
     const next = arrayMove(list, oldIndex, newIndex);
     setItems(next);
     try {
-      await reorderAttachments(prescriptionId, next.map((a) => a.id));
+      await reorderAttachments(
+        prescriptionId,
+        next.map((a) => a.id),
+      );
       await queryClient.invalidateQueries({ queryKey: ["attachments", prescriptionId] });
       setItems(null);
       toast.success("Order saved");
@@ -177,18 +191,23 @@ export function AttachmentManager({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="text-card-title text-foreground">Attachments</span>
-        <span className="text-meta shrink-0">
-          {list.length}/{MAX_ATTACHMENTS}
+        <div className="flex items-center gap-2">
+          <Paperclip className="h-4 w-4 text-primary" />
+          <span className="font-display text-lg font-semibold text-foreground">
+            Prescription files
+          </span>
+        </div>
+        <span className="shrink-0 rounded-full bg-secondary px-2.5 py-0.5 text-xs font-semibold text-primary tabular-nums">
+          {list.length} of {MAX_ATTACHMENTS}
         </span>
       </div>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={list.map((a) => a.id)} strategy={rectSortingStrategy}>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {isLoading && <div className="aspect-square animate-pulse rounded-xl bg-muted" />}
+          <div className="grid grid-cols-2 gap-3">
+            {isLoading && <Skeleton className="aspect-square rounded-[16px]" />}
             {list.map((attachment) => (
               <Thumb
                 key={attachment.id}
@@ -201,17 +220,22 @@ export function AttachmentManager({
                 type="button"
                 onClick={() => inputRef.current?.click()}
                 disabled={busy}
-                className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border text-sm text-muted-foreground transition-colors hover:border-primary hover:bg-secondary/50 hover:text-primary disabled:opacity-60"
+                className="flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-[16px] border border-dashed border-border bg-secondary/35 p-3 text-center text-sm text-muted-foreground transition-colors hover:border-primary hover:bg-secondary/65 hover:text-primary disabled:opacity-60"
               >
                 {busy ? (
                   <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                    <span className="text-xs">Uploading…</span>
+                    <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                    <span className="text-xs font-semibold">Uploading…</span>
                   </>
                 ) : (
                   <>
-                    <Plus className="h-5 w-5" />
-                    <span className="text-xs">Add file</span>
+                    <span className="grid h-10 w-10 place-items-center rounded-full bg-card text-primary shadow-2xs">
+                      <Plus className="h-5 w-5" />
+                    </span>
+                    <span className="text-xs font-semibold text-foreground">Add photo or PDF</span>
+                    <span className="text-[11px] text-muted-foreground tabular-nums">
+                      Slot {list.length + 1} of {MAX_ATTACHMENTS}
+                    </span>
                   </>
                 )}
               </button>
@@ -221,12 +245,12 @@ export function AttachmentManager({
       </DndContext>
 
       {full && (
-        <p className="text-meta">
+        <p className="rounded-xl bg-secondary/50 px-3 py-2 text-xs text-muted-foreground">
           You've reached the 4-attachment limit for this prescription — remove one to add another.
         </p>
       )}
       {error && (
-        <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
+        <p className="rounded-xl bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
       )}
 
       <input
@@ -237,7 +261,7 @@ export function AttachmentManager({
         className="hidden"
         onChange={(e) => handleFiles(e.target.files)}
       />
-      <p className="text-meta">
+      <p className="text-xs leading-relaxed text-muted-foreground">
         JPG, PNG, WebP or PDF · up to 20 MB each. Images are optimized before upload. Drag the
         handle to reorder.
       </p>
