@@ -1,17 +1,20 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Loader2 } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { ChevronLeft, Loader2, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { AttachmentManager } from "@/components/attachment-manager";
-import { PageHeader } from "@/components/page-header";
 import { PrescriptionFields } from "@/components/prescription-fields";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
+import {
+  validatePrescriptionDetails,
+  type PrescriptionDetailsErrors,
+} from "@/lib/prescription-details";
 import { prescriptionQuery } from "@/lib/queries";
-import { validatePrescriptionDetails, type PrescriptionDetailsErrors } from "@/lib/prescription-details";
 import { useActionError } from "@/lib/use-action-error";
 
 export const Route = createFileRoute("/_authenticated/prescriptions_/$prescriptionId/edit")({
@@ -20,7 +23,10 @@ export const Route = createFileRoute("/_authenticated/prescriptions_/$prescripti
       { title: "Edit prescription — CareBox" },
       { name: "description", content: "Update prescription details and manage its attachments." },
       { property: "og:title", content: "Edit prescription — CareBox" },
-      { property: "og:description", content: "Update prescription details and manage its attachments." },
+      {
+        property: "og:description",
+        content: "Update prescription details and manage its attachments.",
+      },
     ],
   }),
   component: EditPrescription,
@@ -103,50 +109,143 @@ function EditPrescription() {
   }
 
   return (
-    <div>
-      <PageHeader
-        title="Edit prescription"
-        subtitle="Changes to details save when you submit; attachment changes save immediately."
-        backTo="/prescriptions/$prescriptionId"
-        backParams={{ prescriptionId }}
-      />
-      <form className="max-w-3xl space-y-8" onSubmit={handleSubmit}>
-        <PrescriptionFields
-          date={date}
-          setDate={setDate}
-          doctor={doctor}
-          setDoctor={setDoctor}
-          specialty={specialty}
-          setSpecialty={setSpecialty}
-          notes={notes}
-          setNotes={setNotes}
-          weightKg={weightKg}
-          setWeightKg={(value) => { setWeightKg(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.weight_kg; return next; }); }}
-          heightCm={heightCm}
-          setHeightCm={(value) => { setHeightCm(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.height_cm; return next; }); }}
-          symptoms={symptoms}
-          setSymptoms={(value) => { setSymptoms(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.symptoms; return next; }); }}
-          doctorInstructions={doctorInstructions}
-          setDoctorInstructions={(value) => { setDoctorInstructions(value); setOptionalErrors((prev) => { const next = { ...prev }; delete next.doctor_instructions; return next; }); }}
-          optionalErrors={optionalErrors}
-          expandOptional={Boolean(
-            prescription.data?.weight_kg != null || prescription.data?.height_cm != null ||
-            prescription.data?.symptoms || prescription.data?.doctor_instructions,
-          )}
-          disabled={busy}
-        />
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex items-center justify-between gap-3">
+        <Link
+          to="/prescriptions/$prescriptionId"
+          params={{ prescriptionId }}
+          className="inline-flex min-h-10 items-center gap-1 rounded-full px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+        >
+          <ChevronLeft className="h-4 w-4" /> Back to prescription
+        </Link>
+      </div>
 
-        {user && <div className="form-surface"><AttachmentManager prescriptionId={prescriptionId} userId={user.id} /></div>}
+      <section className="space-y-2">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-[11px] font-bold tracking-wider text-primary uppercase">
+          Update record
+        </span>
+        <h1 className="text-page-title text-foreground">Edit prescription</h1>
+        <p className="text-body max-w-2xl text-muted-foreground">
+          Changes to details save when you submit; attachment changes save immediately.
+        </p>
+      </section>
 
-        {error && (
-          <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
-        )}
+      {prescription.isLoading ? (
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+          <Skeleton className="h-96 rounded-[20px]" />
+          <Skeleton className="h-80 rounded-[20px]" />
+        </div>
+      ) : (
+        <form
+          className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-start"
+          onSubmit={handleSubmit}
+        >
+          <div className="space-y-5">
+            <PrescriptionFields
+              date={date}
+              setDate={setDate}
+              doctor={doctor}
+              setDoctor={setDoctor}
+              specialty={specialty}
+              setSpecialty={setSpecialty}
+              notes={notes}
+              setNotes={setNotes}
+              weightKg={weightKg}
+              setWeightKg={(value) => {
+                setWeightKg(value);
+                setOptionalErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.weight_kg;
+                  return next;
+                });
+              }}
+              heightCm={heightCm}
+              setHeightCm={(value) => {
+                setHeightCm(value);
+                setOptionalErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.height_cm;
+                  return next;
+                });
+              }}
+              symptoms={symptoms}
+              setSymptoms={(value) => {
+                setSymptoms(value);
+                setOptionalErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.symptoms;
+                  return next;
+                });
+              }}
+              doctorInstructions={doctorInstructions}
+              setDoctorInstructions={(value) => {
+                setDoctorInstructions(value);
+                setOptionalErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.doctor_instructions;
+                  return next;
+                });
+              }}
+              optionalErrors={optionalErrors}
+              expandOptional={Boolean(
+                prescription.data?.weight_kg != null ||
+                prescription.data?.height_cm != null ||
+                prescription.data?.symptoms ||
+                prescription.data?.doctor_instructions,
+              )}
+              disabled={busy}
+            />
 
-        <Button type="submit" className="h-12 w-full sm:w-auto sm:min-w-48" disabled={busy}>
-          {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {busy ? "Saving…" : "Save changes"}
-        </Button>
-      </form>
+            {error && (
+              <p className="rounded-xl bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive">
+                {error}
+              </p>
+            )}
+
+            <div className="hidden items-center gap-3 lg:flex">
+              <Button
+                type="submit"
+                className="h-12 min-w-48 cursor-pointer rounded-full px-6 font-semibold shadow-[0_6px_18px_-4px_rgba(13,94,79,0.28)]"
+                disabled={busy}
+              >
+                {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {busy ? "Saving…" : "Save changes"}
+              </Button>
+              <Button asChild type="button" variant="ghost" className="h-12 rounded-full px-5">
+                <Link to="/prescriptions/$prescriptionId" params={{ prescriptionId }}>
+                  Cancel
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {user && (
+              <div className="rounded-[20px] border border-border/80 bg-card p-5 shadow-[var(--shadow-card)] sm:p-6">
+                <AttachmentManager prescriptionId={prescriptionId} userId={user.id} />
+              </div>
+            )}
+
+            <div className="flex items-center gap-2.5 rounded-[20px] border border-border/70 bg-secondary/45 p-4">
+              <LockKeyhole className="h-4 w-4 shrink-0 text-primary" />
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Attachments are stored privately and loaded via time-limited signed URLs.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:hidden">
+            <Button
+              type="submit"
+              className="h-12 w-full cursor-pointer rounded-full font-semibold shadow-[0_6px_18px_-4px_rgba(13,94,79,0.28)]"
+              disabled={busy}
+            >
+              {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {busy ? "Saving…" : "Save changes"}
+            </Button>
+          </div>
+        </form>
+      )}
     </div>
   );
 }
