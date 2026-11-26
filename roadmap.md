@@ -25,3 +25,9 @@
 - [ ] Make recent records easier to reach and family members easier to scan on mobile
 - [ ] Remove redundant dashboard controls and unverifiable security claims
 - [ ] Verify the updated dashboard at phone, tablet, and desktop widths
+
+# Public privacy page
+
+- [ ] Add a public `/privacy` page with the CareBox privacy text and app-specific analytics disclosures
+- [ ] Add the sign-in/sign-up disclaimer and Privacy links in the app shell and Account screen
+- [ ] Regenerate the route tree, verify the public page, and commit the generated route entry
